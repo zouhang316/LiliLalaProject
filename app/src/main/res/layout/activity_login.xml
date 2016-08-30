@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchParent"
+    android:background="@color/nomarl_grey_bg_color"
+    tools:context=".login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/cross"
+        android:layout_width="@dimen/twenty_five_dp"
+        android:layout_height="@dimen/twenty_five_dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/ten_dp"
+        android:src="@mipmap/cross" />
+
+    <RelativeLayout
+        style="@style/WrapContent"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/thirtieth_dp"
+        android:layout_marginStart="@dimen/thirtieth_dp">
+
+        <ImageView
+            android:id="@+id/sridicon"
+            android:layout_width="@dimen/twenty_five_dp"
+            android:layout_height="@dimen/twenty_five_dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/ten_dp"
+            android:src="@mipmap/email" />
+
+        <EditText
+            android:id="@+id/lg_username"
+            style="@style/WrapContent.WidthMatchParent"
+            android:layout_alignBottom="@+id/sridicon"
+            android:layout_alignTop="@+id/sridicon"
+            android:layout_toRightOf="@+id/sridicon"
+            android:background="@null"
+            android:hint="@string/hint_input_username"
+            android:singleLine="true"
+            android:text="15576310006 "
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            android:textSize="@dimen/fourty_sp" />
+
+        <View
+            android:id="@+id/line1"
+            style="@style/MatchParent.Line"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/sridicon"
+            android:background="@color/white_color" />
+
+        <ImageView
+            android:id="@+id/srpasswordicon"
+            android:layout_width="@dimen/twenty_five_dp"
+            android:layout_height="@dimen/twenty_five_dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/line1"
+            android:layout_margin="@dimen/ten_dp"
+            android:src="@mipmap/password" />
+
+        <EditText
+            android:id="@+id/lg_password"
+            style="@style/WrapContent.WidthMatchParent"
+            android:layout_alignBottom="@+id/srpasswordicon"
+            android:layout_alignTop="@+id/srpasswordicon"
+            android:layout_toLeftOf="@+id/forgotpasswordtext"
+            android:layout_toRightOf="@+id/srpasswordicon"
+            android:background="@null"
+            android:hint="@string/hint_pwd"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:text="sunxe123456"
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            android:textSize="@dimen/fourty_sp" />
+
+        <TextView
+            android:id="@+id/forgotpasswordtext"
+            style="@style/WrapContent"
+            android:layout_alignBottom="@+id/srpasswordicon"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/srpasswordicon"
+            android:gravity="center_vertical"
+            android:text="@string/str_forgpwd"
+            android:textColor="@color/forget_pwd_color"
+            android:textSize="@dimen/ten_sp" />
+
+        <View
+            android:id="@+id/line2"
+            style="@style/MatchParent.Line"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/srpasswordicon"
+            android:background="@color/white_color" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/line2"
+            android:layout_marginEnd="@dimen/ten_dp"
+            android:layout_marginStart="@dimen/ten_dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/getcode_shape"
+            android:text="登录"
+            android:textColor="@color/white_color"
+            android:textSize="@dimen/ten_sp" />
+
+        <Button
+            android:id="@+id/btn_reg"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/btn_login"
+            android:layout_marginEnd="@dimen/ten_dp"
+            android:layout_marginStart="@dimen/ten_dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:background="@drawable/btn_comm_next"
+            android:text="还没有账号，去注册"
+            android:textColor="@color/nomarl_text_color"
+            android:textSize="@dimen/ten_sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,90 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.Common" />
+
+    <style name="AppTheme.Common.Launch">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="MatchParent.Weight">
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="MatchParent.Weight.Height">
+        <item name="android:layout_height">0dp</item>
+    </style>
+    <style name="MatchParent.Line">
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WrapContent.WidthMatchParent">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="WrapContent.HeightMatchParent">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="WrapContent.WidthMatchParent.Margin">
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+
+    <style name="WrapContent.AdjustViewBoundsFalse">
+        <item name="android:adjustViewBounds">false</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Toolbar_TextAppearance_White">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Toolbar_TextAppearance_Expanded">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="RecyclerViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="RecyclerItemViewStyle">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="tab_main_btn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:textColor">@color/tab_main_botton_text_color</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+</resources>

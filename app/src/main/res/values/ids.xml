@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--RecyclerView 相关属性-->
+    <item name="toolbar" type="id" />
+    <item name="toolbar_title" type="id" />
+    <item name="swipeRefreshLayout" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="pullRecycler" type="id" />
+    <item name="content_fl" type="id" />
+</resources>

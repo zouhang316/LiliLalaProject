@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">lala</string>
+    <string name="setting">设置</string>
+    <string name="dialog_ok">确定</string>
+    <string name="loading">正在加载中...</string>
+    <!--手机号正则表达式-->
+    <string name="check_mobile">^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$</string>
+    <string name="hint_input_username">输入手机号/邮箱/昵称</string>
+    <string name="hint_pwd">输入密码</string>
+    <string name="wait_dialog_title">加载中...</string>
+
+    <!--网络异常处理信息提示-->
+    <string name="network_server_error">服务不可用，请稍后重试!</string>
+    <string name="network_author_error">身份验证未通过，请稍后重试!</string>
+    <string name="network_parser_error">解析数据错误，请稍后重试!</string>
+    <string name="network_timeout_error">网络连接超时，请稍后重试！</string>
+    <string name="network_connect_error">无法连接服务器,请检查网络地址是否正确!</string>
+    <string name="network_nomarl_error">网络连接异常，请检查网络!</string>
+    <string name="network_red_error">重定向错误，请稍后重试!</string>
+    <string name="hint_phone">输入手机号</string>
+    <string name="hint_true_phone">输入正确的手机号</string>
+    <string name="str_getcode">获取验证码</string>
+    <string name="hint_input_code">请输入验证码</string>
+    <string name="next_step">下一步</string>
+    <string name="str_gologin">已有有账号，去登陆</string>
+    <string name="str_forgpwd">忘记密码？</string>
+
+    <!--SMSSDK KEY-->
+    <string name="smssdk_value">136d3c822d102ed6a4088350618acc4b</string>
+    <string name="smssdk_key">1238163940198</string>
+    <string name="hint_true_pwd">填写6~18位包含字母数字的密码</string>
+    <string name="hint_align_pwd">再次确认密码</string>
+    <string name="str_finish">完成注册</string>
+
+    <string name="hint_no_layout">需要重新定义你的Fragment Layout</string>
+    <string name="str_information">资讯</string>
+    <string name="str_leaderboard">市集</string>
+    <string name="str_photo">照片</string>
+    <string name="str_circle">圈子</string>
+    <string name="str_mine">我的</string>
+</resources>

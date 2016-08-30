@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/home_tab_top_line"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_information"
+            style="@style/tab_main_btn"
+            android:checked="true"
+            android:drawableTop="@drawable/tab_mess_btn"
+            android:text="@string/str_information" />
+
+        <RadioButton
+            android:id="@+id/rb_list"
+            style="@style/tab_main_btn"
+            android:drawableTop="@drawable/tab_list_btn"
+            android:text="市集" />
+
+        <RadioButton
+            android:id="@+id/rb_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_photo"
+            android:layout_gravity="center"
+            android:button="@null"
+            android:text="@null" />
+
+        <RadioButton
+            android:id="@+id/rb_circle"
+            style="@style/tab_main_btn"
+            android:drawableTop="@drawable/tab_circle_btn"
+            android:text="圈子"
+            android:checked="false" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            style="@style/tab_main_btn"
+            android:drawableTop="@drawable/tab_my_btn"
+            android:text="我的" />
+    </RadioGroup>
+</RelativeLayout>
