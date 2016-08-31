@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.lala.R;
+import com.android.lala.activity.ArticleActivity;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.base.BaseActivity;
@@ -37,6 +38,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private HttpListener<String> httpListener;
     private String username;
 
+
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
@@ -63,7 +65,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (null != userBean) {
                     LalaLog.i("userBean:", userBean.toString());
                     Intent intent = new Intent();
-                    intent.setClass(LoginActivity.this, MainActivity.class);
+                    intent.setClass(LoginActivity.this, ArticleActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
