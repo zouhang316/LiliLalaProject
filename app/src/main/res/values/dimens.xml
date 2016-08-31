@@ -8,4 +8,5 @@
     <dimen name="twenty_dp">20dp</dimen>
     <dimen name="twenty_five_dp">25dp</dimen>
     <dimen name="thirtieth_dp">30dp</dimen>
+    <dimen name="titlesize_sp">18sp</dimen>
 </resources>

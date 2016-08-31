@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/article_toppic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/article_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设计"
+                android:textSize="16sp"
+                android:textColor="@color/classf"/>
+            <TextView
+                android:id="@+id/acricle_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/article_class"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/titlesize_sp"
+                android:text="这家在曼谷的星巴克，好像一个顶上的玻璃瓶子,好像一个顶上的玻璃瓶子"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/acricle_title">
+
+                <com.android.lala.view.CircleImageView
+                    android:id="@+id/article_channelhead"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp" />
+
+                <TextView
+                    android:id="@+id/article_channelname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/article_channelhead"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    android:text="有范儿"/>
+
+                <TextView
+                    android:id="@+id/article_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/article_channelname"
+                    android:layout_marginLeft="10dp"
+                    android:text="2小时前"/>
+
+                 <TextView
+                     android:id="@+id/article_likenum"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerVertical="true"
+                     android:layout_alignParentRight="true"
+                     android:drawableLeft="@drawable/ic_xin"
+                     android:textSize="14sp"
+                     android:drawablePadding="10dp"
+                     android:text="300"/>
+            </RelativeLayout>
+            </RelativeLayout>
+
+        <WebView
+            android:id="@+id/article_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="0dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/dash_line" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="赞一个"
+            android:drawableLeft="@drawable/ic_xin"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/article_zan_button"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/nomarl_divider"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:layout_margin="20dp"
+                android:background="@color/white" >
+                <ImageView
+                    android:id="@+id/channelicon"
+                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_above="@+id/channel_fans"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white" />
+                <TextView
+                    android:id="@+id/channel_fans"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="388"/>
+                <Button
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_xin" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/anelinfo_tv"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本文由有  有范儿  发布，已有348篇文章" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/nomarl_divider"/>
+
+    </LinearLayout>
+
+</ScrollView>
