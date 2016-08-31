@@ -13,6 +13,8 @@ import com.android.lala.activity.ArticleActivity;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.base.BaseActivity;
+import com.android.lala.base.commbuinese.CommDataDao;
+import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.fastjson.FastJsonHelper;
 import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
@@ -38,7 +40,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private HttpListener<String> httpListener;
     private String username;
 
-
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
@@ -51,10 +52,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
-    protected void initListener() {
-        btn_login.setOnClickListener(this);
-        btn_reg.setOnClickListener(this);
-        iv_cross.setOnClickListener(this);
+    protected void initData() {
+        commDataDao=new CommDataDaoImpl(this,false,"login.json");
+
         httpListener = new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
@@ -72,12 +72,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     showMessageDialog("登录失败", "解析数据错误！");
                 }
             }
-
             @Override
             public void onFail(String errMsg) {
                 showMessageDialog("提示", errMsg);
             }
         };
+    }
+
+        @Override
+    protected void initListener() {
+        btn_login.setOnClickListener(this);
+        btn_reg.setOnClickListener(this);
+        iv_cross.setOnClickListener(this);
     }
 
     @Override
@@ -104,7 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         HashMap<String, String> paramers = new HashMap<>();
         paramers.put("name", username);
         paramers.put("pw", pwd);
-        VolleyHelper.getInstance().add(this, this, HttpWhatContacts.LOGIN, ApiContacts.USER_LOGIN, httpListener, paramers, true);
+        VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.LOGIN, ApiContacts.USER_LOGIN, httpListener, paramers, true);
     }
 
     @Override
@@ -112,13 +118,4 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         return false;
     }
 
-    @Override
-    public boolean isSamulation() {
-        return false;
-    }
-
-    @Override
-    public String getJsonStrName() {
-        return "login.json";
-    }
 }

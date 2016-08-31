@@ -87,6 +87,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
     protected void initListener() {
         btn_relogin.setOnClickListener(this);
         btn_getcode.setOnClickListener(this);

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.home.MainActivity;
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
@@ -35,9 +36,11 @@ public class SetingPwdActivity extends BaseActivity {
         et_aglign_password = findView(R.id.et_aglign_password);
         et_password = findView(R.id.et_password);
         btn_finish = findView(R.id.btn_finish);
+    }
 
-
-        VolleyHelper.getInstance().init(this);
+    @Override
+    protected void initData() {
+        commDataDao=new CommDataDaoImpl(this,false,"register.json");
         httpListener = new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
@@ -76,24 +79,13 @@ public class SetingPwdActivity extends BaseActivity {
                 String mPhoneNumber = getIntent().getStringExtra("mPhoneNumber");
                 paramers.put("name", mPhoneNumber);
                 paramers.put("pw", pwd);
-                VolleyHelper.getInstance().add(SetingPwdActivity.this, "register", HttpWhatContacts.REGISTER, ApiContacts.USER_REGISTER, httpListener, paramers, true);
+                VolleyHelper.getInstance().add(commDataDao, "register", HttpWhatContacts.REGISTER, ApiContacts.USER_REGISTER, httpListener, paramers, true);
             }
         });
 
     }
-
     @Override
     protected boolean isShowToolBar() {
-        return false;
-    }
-
-    @Override
-    public boolean isSamulation() {
         return true;
-    }
-
-    @Override
-    public String getJsonStrName() {
-        return "register.json";
     }
 }

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.android.lala.R;
-import com.android.lala.base.BaseActivity;
 import com.android.lala.customview.WaitDialog;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.http.request.MultiPartStringRequest;
@@ -31,9 +30,9 @@ public class RequestFactory {
     private static volatile RequestFactory mFactory;
     private Context mContext;
 
-    public RequestFactory(BaseActivity activity) {
-        mWaitDialog = new WaitDialog(activity);
-        mContext = activity.getApplicationContext();
+    public RequestFactory(Context context) {
+        mWaitDialog = new WaitDialog(context);
+        mContext = context.getApplicationContext();
     }
 
     private static WaitDialog mWaitDialog;

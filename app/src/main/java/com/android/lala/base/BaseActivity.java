@@ -15,12 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.lala.R;
+import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.http.VolleyHelper;
-import com.android.lala.utils.CommUtils;
-import com.android.lala.utils.LalaLog;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 
 /**
@@ -31,12 +27,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private FrameLayout mContentLayout;
     public String TAG = this.getClass().getSimpleName();
-
+    public CommDataDaoImpl commDataDao;
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getDelegate().setContentView(R.layout.activity_base);
-        VolleyHelper.getInstance().init(this);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbarlayout);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mContentLayout = (FrameLayout) findViewById(R.id.content);
@@ -46,16 +41,40 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (!isShowToolBar()) {
             getSupportActionBar().hide();
         }
+        initData();
+        VolleyHelper.getInstance().init(this);
         onActivityCreate(savedInstanceState);
         initListener();
     }
 
+    /***
+     * 初始化数据
+     */
+    protected abstract void initData();
+
+    /***
+     * 初始化控件监听
+     */
     protected abstract void initListener();
 
+    /***
+     * 是否显示ToolBar
+     * @return
+     */
     protected abstract boolean isShowToolBar();
 
+    /***
+     * 初始化控件View  FindViewById 需要在这里
+     * @param savedInstanceState
+     */
     protected abstract void onActivityCreate(Bundle savedInstanceState);
 
+    /***
+     * 替換FindViewById  減少每次強轉的問題
+     * @param viewId
+     * @param <T>
+     * @return
+     */
     public <T extends View> T findView(int viewId) {
         return (T) mContentLayout.findViewById(viewId);
     }
@@ -224,48 +243,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void showToastMsg(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
-
-    /***
-     * 是否使用离线数据
-     *
-     * @return
-     */
-    public boolean isSamulation() {
-        return false;
-    }
-
-    /***
-     * 返回Assets目录下面json 文件名称
-     *
-     * @return
-     */
-    public String getJsonStrName() {
-        return null;
-    }
-
-    /***
-     * 根据 jsonName获取文件内容
-     *
-     * @return
-     */
-    public String getAssData() {
-        String jsonName = getJsonStrName();
-        if (TextUtils.isEmpty(jsonName)) {
-            LalaLog.e(TAG, "you should override getJsonStrName");
-            return null;
-        } else {
-            String result;
-            try {
-                InputStream inputStream = getAssets().open(jsonName);
-                result = CommUtils.InputStreamToString(inputStream);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-            return result;
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

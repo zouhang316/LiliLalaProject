@@ -20,7 +20,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.lala.LaLaAppaction;
-import com.android.lala.base.BaseActivity;
+import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.utils.LalaLog;
 import com.android.volley.Request;
@@ -36,7 +36,7 @@ import java.util.Map;
  */
 public class VolleyHelper {
     private RequestQueue requestQueue = null;
-
+    private Context mContext;
     private static volatile VolleyHelper instance = null;
 
     private VolleyHelper() {
@@ -59,6 +59,7 @@ public class VolleyHelper {
      * @param context
      */
     public void init(Context context) {
+        this.mContext=context;
         if (LaLaAppaction.isUseHTTPS) {
 //            use ssl keystore|jks|cer
 //            InputStream keyStore = context.getResources().openRawResource(R.raw.handpayssl);
@@ -71,7 +72,7 @@ public class VolleyHelper {
     /***
      * Post Request
      *
-     * @param activity
+     * @param commDataDao
      * @param tag
      * @param what
      * @param url
@@ -79,14 +80,14 @@ public class VolleyHelper {
      * @param paramers
      * @param isLoading
      */
-    public void add(BaseActivity activity, Object tag, int what, String url, HttpListener<String> httpListener, HashMap<String, String> paramers, boolean isLoading) {
+    public void add(CommDataDaoImpl commDataDao, Object tag, int what, String url, HttpListener<String> httpListener, HashMap<String, String> paramers, boolean isLoading) {
         if (requestQueue != null) {
-            if (!activity.isSamulation()) {
-                Request<String> request = new RequestFactory(activity).createStringRequest(what, url, httpListener, paramers, isLoading);
+            if (!commDataDao.isSamulation()) {
+                Request<String> request = new RequestFactory(mContext).createStringRequest(what, url, httpListener, paramers, isLoading);
                 request.setTag(tag);
                 requestQueue.add(request);
             } else {
-                String result = activity.getAssData();
+                String result = commDataDao.getAssData();
                 if (TextUtils.isEmpty(result)) {
                     LalaLog.e("The samulation data is Empty!");
                     return;
@@ -102,7 +103,7 @@ public class VolleyHelper {
     /***
      * upload file request
      *
-     * @param activity
+     * @param commDataDao
      * @param tag
      * @param what
      * @param url
@@ -111,14 +112,14 @@ public class VolleyHelper {
      * @param files
      * @param isLoading
      */
-    public void addFile(BaseActivity activity, Object tag, int what, String url, HttpListener<String> httpListener, HashMap<String, String> paramers, Map<String, File> files, boolean isLoading) {
+    public void addFile(CommDataDaoImpl commDataDao, Object tag, int what, String url, HttpListener<String> httpListener, HashMap<String, String> paramers, Map<String, File> files, boolean isLoading) {
         if (requestQueue != null) {
-            if (!activity.isSamulation()) {
-                Request<String> request = new RequestFactory(activity).createMulitPartRequest(what, url, httpListener, paramers, files, isLoading);
+            if (!commDataDao.isSamulation()) {
+                Request<String> request = new RequestFactory(mContext).createMulitPartRequest(what, url, httpListener, paramers, files, isLoading);
                 request.setTag(tag);
                 requestQueue.add(request);
             } else {
-                String result = activity.getAssData();
+                String result = commDataDao.getAssData();
                 if (TextUtils.isEmpty(result)) {
                     LalaLog.e("The samulation data is Empty!");
                     return;

@@ -7,13 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.lala.base.commbuinese.CommDataDaoImpl;
+import com.android.lala.http.VolleyHelper;
+
 public abstract class BaseFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
-
+    public CommDataDaoImpl commDataDao;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initData(savedInstanceState);
+        VolleyHelper.getInstance().init(getActivity());
     }
 
     @Override

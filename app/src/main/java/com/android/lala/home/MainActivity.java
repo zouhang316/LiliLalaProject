@@ -51,6 +51,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
     protected void initListener() {
         rb_information.setOnClickListener(this);
         rb_list.setOnClickListener(this);
