@@ -195,6 +195,7 @@ public class BaseListViewViewHolder {
         return this;
     }
 
+
     /***
      * @param viewId
      * @param value

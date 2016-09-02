@@ -12,4 +12,5 @@ public class ApiContacts {
     public static final String USER_REGISTER = LalaConfig.httpServer + "/app/register";
     public static final String ARTICLE=LalaConfig.httpServer+ "/app/article";
     public static final String CONTENTURL=LalaConfig.httpServer+"/static/html";
+    public static final String ARTICLERECOMMENDURL=LalaConfig.httpServer+"/app/article/channels";
 }

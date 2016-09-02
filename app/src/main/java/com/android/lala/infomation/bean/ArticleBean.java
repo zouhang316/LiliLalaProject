@@ -24,7 +24,7 @@ public class ArticleBean implements Parcelable {
     private String channel_ico;
     private int article_num;
     private String sort;
-    private int subscription;
+    private String subscription;
     private String title;
     private String content;
 
@@ -68,11 +68,11 @@ public class ArticleBean implements Parcelable {
         this.sort = sort;
     }
 
-    public int getSubscription() {
+    public String getSubscription() {
         return subscription;
     }
 
-    public void setSubscription(int subscription) {
+    public void setSubscription(String subscription) {
         this.subscription = subscription;
     }
 
@@ -104,7 +104,7 @@ public class ArticleBean implements Parcelable {
         dest.writeString(this.channel_ico);
         dest.writeInt(this.article_num);
         dest.writeString(this.sort);
-        dest.writeInt(this.subscription);
+        dest.writeString(this.subscription);
         dest.writeString(this.title);
         dest.writeString(this.content);
     }
@@ -118,7 +118,7 @@ public class ArticleBean implements Parcelable {
         this.channel_ico = in.readString();
         this.article_num = in.readInt();
         this.sort = in.readString();
-        this.subscription = in.readInt();
+        this.subscription = in.readString();
         this.title = in.readString();
         this.content = in.readString();
     }

@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/article_class"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/nomarl_title_color"
                 android:textSize="@dimen/titlesize_sp"
                 android:text="这家在曼谷的星巴克，好像一个顶上的玻璃瓶子,好像一个顶上的玻璃瓶子"/>
 
@@ -134,18 +135,17 @@
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="388"/>
+                    android:textColor="@color/white" />
                 <Button
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@+id/channelicon"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/ic_xin" />
+                    android:background="@drawable/ic_add" />
             </RelativeLayout>
             <TextView
-                android:id="@+id/anelinfo_tv"
+                android:id="@+id/channelinfo_tv"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
@@ -154,15 +154,24 @@
                 android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本文由有  有范儿  发布，已有348篇文章" />
+                android:textColor="@color/black"
+                android:text="本文由  有范儿  发布，已有 348 篇文章" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
             android:background="@color/nomarl_divider"/>
+        <ListView
+            android:id="@+id/article_recommend_bottom_list"
+            android:layout_width="match_parent"
+            android:dividerHeight="10dp"
+            android:divider="@color/nomarl_divider"
+            android:layout_height="390dp">
+
+        </ListView>
+
 
     </LinearLayout>
 

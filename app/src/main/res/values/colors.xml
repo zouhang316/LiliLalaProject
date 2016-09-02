@@ -15,4 +15,5 @@
     <color name="gray">#F5F5F5</color>
     <color name="article_background">#CCCCCC</color>
     <color name="nomarl_divider">#F0F0F2</color>
+    <color name="nomarl_title_color">#181818</color>
 </resources>

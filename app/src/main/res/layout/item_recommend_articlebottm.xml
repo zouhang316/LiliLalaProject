@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/article_recommend"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="125dp">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/article_bottom_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:focusable="false"
+            android:background="@mipmap/test"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+        <TextView
+            android:id="@+id/article_bottom_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/nomarl_title_color"
+            android:text="这家在曼谷的星巴克，好像一个顶上的玻璃瓶子,好像一个顶上的玻璃瓶子"/>
+        <com.android.lala.view.CircleImageView
+            android:id="@+id/article_bottom_channelhead"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/test"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:id="@+id/article_bottom_channelname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/article_bottom_channelhead"
+            android:textColor="@color/nomarl_text_color"
+            android:text="有范儿"
+            />
+        <TextView
+            android:id="@+id/article_bottom_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/nomarl_text_color"
+            android:layout_toRightOf="@+id/article_bottom_channelname"
+            android:text="3小时前"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

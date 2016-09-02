@@ -9,4 +9,5 @@ public class HttpWhatContacts {
     public static final int LOGIN = 1;
     public static final int REGISTER = 2;
     public static final int GETARTICLE=3;
+    public static final int GETARTICLERECOMMEND=4;
 }
