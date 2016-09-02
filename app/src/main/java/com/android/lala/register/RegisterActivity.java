@@ -1,13 +1,10 @@
 package com.android.lala.register;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +14,6 @@ import com.android.lala.R;
 import com.android.lala.base.BaseActivity;
 import com.android.lala.customview.TimeButton;
 import com.android.lala.utils.CommUtils;
-
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private ImageView cross;
@@ -41,50 +35,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         btn_getcode = findView(R.id.btn_getcode);
         btn_next = findView(R.id.btn_next);
         btn_relogin = findView(R.id.btn_relogin);
-        initSMSSDK();
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                int event = msg.arg1;
-                int result = msg.arg2;
-                Object data = msg.obj;
-                Log.e("event", "event=" + event);
-                if (result == SMSSDK.RESULT_COMPLETE) {
-                    // 短信注册成功后，返回MainActivity,然后提示
-                    if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {// 提交验证码成功
-                        showToastMsg("提交验证码成功");
-                        Intent intent = new Intent(RegisterActivity.this,
-                                SetingPwdActivity.class);
-                        intent.putExtra("mPhoneNumber", mPhoneNumber);
-                        startActivity(intent);
-                        finish();
-                    } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                        showToastMsg("验证码已经发送");
-                    } else {
-                        ((Throwable) data).printStackTrace();
-                    }
-                } else {
-                    showToastMsg("验证码错误");
-                }
-            }
-        };
     }
 
-    private void initSMSSDK() {
-        SMSSDK.initSDK(this, getString(R.string.smssdk_key), getString(R.string.smssdk_value));
-        EventHandler eventHandler = new EventHandler() {
-            @Override
-            public void afterEvent(int event, int result, Object data) {
-                Message msg = Message.obtain();
-                msg.arg1 = event;
-                msg.arg2 = result;
-                msg.obj = data;
-                mHandler.sendMessage(msg);
-            }
-        };
-        //注册回调监听接口
-        SMSSDK.registerEventHandler(eventHandler);
-    }
 
     @Override
     protected void initData() {
@@ -136,7 +88,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 showMessageDialog("", getString(R.string.hint_true_phone));
                 return;
             }
-            SMSSDK.getVerificationCode("86", mPhoneNumber);
         } else if (viewId == R.id.btn_next) {
             String mCode = et_code.getText().toString().trim();
             if (TextUtils.isEmpty(mPhoneNumber)) {
@@ -146,7 +97,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 showMessageDialog("", getString(R.string.hint_input_code));
                 return;
             }
-            SMSSDK.submitVerificationCode("86", mPhoneNumber, mCode);
         } else if (viewId == R.id.btn_relogin) {
             finish();
         } else if (viewId == R.id.cross) {
@@ -156,7 +106,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void onDestroy() {
-        SMSSDK.unregisterAllEventHandler();
         btn_getcode.onDestroy();
         super.onDestroy();
     }
