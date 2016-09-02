@@ -9,16 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.lala.R;
-import com.android.lala.activity.ArticleActivity;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
+import com.android.lala.article.activity.ArticleActivity;
 import com.android.lala.base.BaseActivity;
-import com.android.lala.base.commbuinese.CommDataDao;
 import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.fastjson.FastJsonHelper;
 import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
-import com.android.lala.home.MainActivity;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.login.bean.UserBean;

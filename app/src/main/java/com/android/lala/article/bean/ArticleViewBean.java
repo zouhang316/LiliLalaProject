@@ -1,4 +1,4 @@
-package com.android.lala.infomation.bean;
+package com.android.lala.article.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -124,7 +124,7 @@ public class ArticleViewBean implements Parcelable {
         this.title = in.readString();
     }
 
-    public static final Parcelable.Creator<ArticleViewBean> CREATOR = new Parcelable.Creator<ArticleViewBean>() {
+    public static final Creator<ArticleViewBean> CREATOR = new Creator<ArticleViewBean>() {
         @Override
         public ArticleViewBean createFromParcel(Parcel source) {
             return new ArticleViewBean(source);

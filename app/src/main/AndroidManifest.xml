@@ -30,7 +30,7 @@
         <activity android:name=".home.MainActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".register.SetingPwdActivity"></activity>
-        <activity android:name=".activity.ArticleActivity"></activity>
+        <activity android:name=".article.activity.ArticleActivity"></activity>
 
     </application>
 
