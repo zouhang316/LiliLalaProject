@@ -44,7 +44,7 @@
                     android:id="@+id/article_channelhead"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/test"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="20dp" />
 

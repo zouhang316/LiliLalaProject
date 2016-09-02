@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="125dp">
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/information_article_ietm_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:focusable="false"
+            android:background="@mipmap/test"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/information_article_ietm_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="@color/nomarl_title_color"
+            android:text="这家在曼谷的星巴克，好像一个顶上的玻璃瓶子,好像一个顶上的玻璃瓶子"/>
+
+        <TextView
+            android:id="@+id/information_article_ietm_channelname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="15dp"
+            android:textColor="@color/nomarl_text_color"
+            android:text="有范儿"
+            />
+        <TextView
+            android:id="@+id/information_article_ietm_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/nomarl_text_color"
+            android:text="3小时前"
+            android:layout_alignTop="@+id/information_article_ietm_channelname"
+            android:layout_toRightOf="@+id/information_article_ietm_channelname"
+            android:layout_toEndOf="@+id/information_article_ietm_channelname" />
+
+        <TextView
+            android:id="@+id/nformation_article_ietm_looknum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:text="100"
+            android:drawableRight="@drawable/ic_eye"
+            android:layout_alignTop="@+id/information_article_ietm_time"
+            android:layout_marginRight="10dp"
+            android:drawablePadding="5dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.android.lala.api;
 
+import android.app.LauncherActivity;
+
 import com.android.lala.config.LalaConfig;
 
 /**
@@ -13,4 +15,5 @@ public class ApiContacts {
     public static final String ARTICLE=LalaConfig.httpServer+ "/app/article";
     public static final String CONTENTURL=LalaConfig.httpServer+"/static/html";
     public static final String ARTICLERECOMMENDURL=LalaConfig.httpServer+"/app/article/channels";
+    public static final String INFORMATIONARTICLE= LalaConfig.httpServer+"/app/technology";
 }

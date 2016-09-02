@@ -23,7 +23,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private Button btn_next;
     private Button btn_relogin;
     private Handler mHandler;
-
     private String mPhoneNumber;
 
     @Override

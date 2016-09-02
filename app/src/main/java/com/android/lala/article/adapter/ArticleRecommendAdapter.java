@@ -1,30 +1,31 @@
 package com.android.lala.article.adapter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.android.lala.R;
+
+import com.android.lala.article.bean.ArticleViewBean;
 import com.android.lala.base.adapter.BaseListViewAdapter;
 import com.android.lala.base.adapter.BaseListViewViewHolder;
-import com.android.lala.infomation.bean.ArticleViewBean;
+
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/9/1.
  */
-public class Article_RecommendAdapter extends BaseListViewAdapter<ArticleViewBean> {
-    public Article_RecommendAdapter(Context context) {
+public class ArticleRecommendAdapter extends BaseListViewAdapter<ArticleViewBean> {
+    public ArticleRecommendAdapter(Context context) {
         super(context);
     }
 
-    public Article_RecommendAdapter(Context context, List mLists) {
+    public ArticleRecommendAdapter(Context context, List mLists) {
         super(context, mLists);
     }
 
     @Override
     public int getLayoutId(int postion) {
-        return R.layout.item_recommend_articlebottm;
+        return R.layout.recommend_articlebottm_item;
     }
 
     @Override

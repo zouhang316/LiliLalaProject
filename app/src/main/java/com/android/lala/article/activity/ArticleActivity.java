@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.lala.R;
-import com.android.lala.article.adapter.Article_RecommendAdapter;
+import com.android.lala.article.adapter.ArticleRecommendAdapter;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.article.bean.ArticleBean;
@@ -48,7 +48,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private ListView listView;
     private CircleImageView channelhead;
     private List<ArticleViewBean> articleviewlist;
-    private Article_RecommendAdapter adapter;
+    private ArticleRecommendAdapter adapter;
     private String id;
 
     @Override
@@ -136,7 +136,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 String value = helper.getContentByKey("more");
                 articleviewlist = FastJsonHelper.getObjects(value, ArticleViewBean.class);
                 LalaLog.i("ArticleViewBean", articleviewlist.toString());
-                adapter = new Article_RecommendAdapter(getApplicationContext(), articleviewlist);
+                adapter = new ArticleRecommendAdapter(getApplicationContext(), articleviewlist);
                 listView.setAdapter(adapter);
 
 

@@ -17,6 +17,7 @@ import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.fastjson.FastJsonHelper;
 import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
+import com.android.lala.home.MainActivity;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.login.bean.UserBean;
@@ -63,7 +64,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (null != userBean) {
                     LalaLog.i("userBean:", userBean.toString());
                     Intent intent = new Intent();
-                    intent.setClass(LoginActivity.this, ArticleActivity.class);
+                    intent.setClass(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
@@ -72,6 +73,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
             @Override
             public void onFail(String errMsg) {
+
                 showMessageDialog("提示", errMsg);
             }
         };
