@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.lala.R;
-import com.android.lala.adapter.Article_RecommendAdapter;
+import com.android.lala.article.adapter.Article_RecommendAdapter;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.article.bean.ArticleBean;

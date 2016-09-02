@@ -1,4 +1,4 @@
-package com.android.lala.adapter;
+package com.android.lala.article.adapter;
 
 import android.content.Context;
 import android.view.View;
