@@ -35,6 +35,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         btn_getcode = findView(R.id.btn_getcode);
         btn_next = findView(R.id.btn_next);
         btn_relogin = findView(R.id.btn_relogin);
+
+
+
     }
 
 
@@ -45,6 +48,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initListener() {
+
+
         btn_relogin.setOnClickListener(this);
         btn_getcode.setOnClickListener(this);
         btn_next.setOnClickListener(this);
