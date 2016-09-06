@@ -148,4 +148,5 @@ public class ArticleBean implements Parcelable {
                 ", content='" + content + '\'' +
                 '}';
     }
+
 }

@@ -30,10 +30,14 @@ public class InformationArticleAdapter extends BaseListViewAdapter<ArticleViewBe
     @Override
     public void convert(BaseListViewViewHolder holder, ArticleViewBean articleViewBean, int position) {
         holder.setText(R.id.information_article_ietm_title,articleViewBean.getTitle());
-        holder.setText(R.id.information_article_ietm_channelname,articleViewBean.getChannel());
+        holder.setText(R.id.information_article_ietm_channelname,articleViewBean.getChannels());
         holder.setText(R.id.nformation_article_ietm_looknum,articleViewBean.getClicknum());
         holder.setText(R.id.information_article_ietm_time,articleViewBean.getDatetime());
         holder.setImageUrl(R.id.information_article_ietm_image,articleViewBean.getBackground());
+        if (null != articleViewBean.getAuthor()){
+            holder.setText(R.id.information_article_ietm_channelname,articleViewBean.getAuthor());
+        }
 
     }
+
 }

@@ -1,6 +1,7 @@
 package com.android.lala.article.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.android.lala.R;
 

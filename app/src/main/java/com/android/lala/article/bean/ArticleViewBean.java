@@ -26,6 +26,7 @@ public class ArticleViewBean implements Parcelable {
     private String id;
     private String title;
     private String channel;
+    private String channels;
 
     public String getDatetime() {
         return datetime;
@@ -91,8 +92,12 @@ public class ArticleViewBean implements Parcelable {
         this.channel = channel;
     }
 
-    public static Creator<ArticleViewBean> getCREATOR() {
-        return CREATOR;
+    public String getChannels() {
+        return channels;
+    }
+
+    public void setChannels(String channels) {
+        this.channels = channels;
     }
 
     @Override
@@ -106,6 +111,7 @@ public class ArticleViewBean implements Parcelable {
                 ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", channel='" + channel + '\'' +
+                ", channels='" + channels + '\'' +
                 '}';
     }
 
@@ -124,6 +130,7 @@ public class ArticleViewBean implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.title);
         dest.writeString(this.channel);
+        dest.writeString(this.channels);
     }
 
     public ArticleViewBean() {
@@ -138,6 +145,7 @@ public class ArticleViewBean implements Parcelable {
         this.id = in.readString();
         this.title = in.readString();
         this.channel = in.readString();
+        this.channels = in.readString();
     }
 
     public static final Parcelable.Creator<ArticleViewBean> CREATOR = new Parcelable.Creator<ArticleViewBean>() {

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/pop_b_btn1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="全部" />
+    <TextView
+        android:id="@+id/pop_b_btn2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="娱乐" />
+
+    <TextView
+        android:id="@+id/pop_b_btn3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="艺术" />
+
+    <TextView
+        android:id="@+id/pop_b_btn4"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="家居" />
+
+    <TextView
+        android:id="@+id/pop_b_btn5"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="商业" />
+
+    <TextView
+        android:id="@+id/pop_b_btn6"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="餐饮" />
+    <TextView
+        android:id="@+id/pop_b_btn7"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:gravity="center"
+        android:text="教育" />
+
+</LinearLayout>

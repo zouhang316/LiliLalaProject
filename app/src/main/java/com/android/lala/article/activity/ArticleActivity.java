@@ -49,7 +49,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private CircleImageView channelhead;
     private List<ArticleViewBean> articleviewlist;
     private ArticleRecommendAdapter adapter;
-    private String id;
+    private String id,toppicurl;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
@@ -71,6 +71,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
                 intent.putExtra("id", articleviewlist.get(position).getId());
+                intent.putExtra("toppic",articleviewlist.get(position).getBackground());
                 startActivity(intent);
             }
         });
@@ -79,6 +80,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void initData() {
         id = getIntent().getStringExtra("id");
+        toppicurl=getIntent().getStringExtra("toppic");
         showToastMsg(id);
         commDataDao = new CommDataDaoImpl(this, false, " ");
         this.httpListener = new HttpListener<String>() {
@@ -93,7 +95,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 if (null != articleBean) {
                     LalaLog.i("articleBean:", articleBean.toString());
                     mWebview.loadUrl(ApiContacts.CONTENTURL + "/" + articleBean.getContent());
-                    Picasso.with(ArticleActivity.this).load("http://lelelala.net/static/upload/20160725bd0d3b67c70443b4af173abe0a916e8f.jpg").into(toppic);
+                    Picasso.with(ArticleActivity.this).load(toppicurl).into(toppic);
                     Picasso.with(ArticleActivity.this).load(articleBean.getChannel_ico()).into(channel_icon);
                     Picasso.with(ArticleActivity.this).load(articleBean.getChannel_ico()).into(channelhead);
                     title.setText(articleBean.getTitle());
@@ -122,14 +124,15 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
      */
     private void getArticle(HttpListener httpListener) {
         HashMap<String, String> paramers = new HashMap<>();
-        paramers.put("id", "405");
-        VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.GETARTICLE, ApiContacts.ARTICLE, httpListener, paramers, true);
+        paramers.put("id", id);
+        LalaLog.i("paramersid",id);
+        VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.GETARTICLE, ApiContacts.ARTICLE, httpListener, paramers, false);
     }
 
     private void getRecommedData(final String sort) {
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest request = new StringRequest(Request.Method.POST, ApiContacts.ARTICLERECOMMENDURL, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, ApiContacts.ARTICLERE_COM, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Helper helper = JsonResultUtils.helper(s);
@@ -138,7 +141,6 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 LalaLog.i("ArticleViewBean", articleviewlist.toString());
                 adapter = new ArticleRecommendAdapter(getApplicationContext(), articleviewlist);
                 listView.setAdapter(adapter);
-
 
             }
         }, new Response.ErrorListener() {

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="190dp"
+    android:layout_margin="5dp"
+    android:padding="5dp"
+    >
+
+
+
+    <FrameLayout
+        android:id="@+id/fl_right_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/information_channel_item_background"
+
+
+        >
+
+        <ImageView
+            android:id="@+id/channal_image"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/test" />
+
+        <ImageView
+            android:id="@+id/channal_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/ic_add" />
+        <TextView
+            android:id="@+id/channal_fansnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="155dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="11123粉丝"
+            android:textColor="#888888"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/channal_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="135dp"
+            android:gravity="center"
+            android:text="有范儿"
+            android:textColor="@color/nomarl_title_color"
+            android:textSize="14sp" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>

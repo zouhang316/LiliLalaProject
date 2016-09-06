@@ -19,16 +19,17 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center">
                 <RadioButton
                     android:id="@+id/information_rbt_technology"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:button="@null"
                     android:gravity="center"
                     android:text="高新科技"
@@ -39,7 +40,7 @@
                     android:id="@+id/information_rbt_culture"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:button="@null"
                     android:gravity="center"
                     android:text="文化创意"
@@ -50,13 +51,38 @@
                     android:id="@+id/information_rbt_subscription"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:button="@null"
                     android:gravity="center"
                     android:text="我的订阅"
                     android:textSize="18sp"
                 />
             </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/radio_indcator1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@color/classf"/>
+                <TextView
+                    android:id="@+id/radio_indcator2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@color/classf"
+                    android:visibility="invisible"/>
+                <TextView
+                    android:id="@+id/radio_indcator3"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@color/classf"
+                    android:visibility="invisible"/>
+            </LinearLayout>
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -65,7 +91,43 @@
         <ListView
             android:id="@+id/information_articlelistview"
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:dividerHeight="10dp"
+            android:divider="@color/nomarl_divider"
+            android:layout_height="675dp"
+            android:listSelector="#00000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/nomarl_title_color"
+            android:text="推荐频道"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/nomarl_text_color"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/information_channel_recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="20dp">
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/nomarl_divider"/>
+
+        <ListView
+            android:id="@+id/information_articlerecommendlist"
+            android:layout_width="match_parent"
+            android:layout_height="670dp"
+            android:dividerHeight="10dp"
+            android:divider="@color/nomarl_divider"
+            android:listSelector="#00000000"/>
 
     </LinearLayout>
 
