@@ -30,6 +30,7 @@ public class TimeButton extends Button implements OnClickListener {
     private TimerTask tt;
     private long time;
     Map<String, Long> map = new HashMap<String, Long>();
+    private boolean isFinish = true;
 
     public TimeButton(Context context) {
         super(context);
@@ -42,12 +43,17 @@ public class TimeButton extends Button implements OnClickListener {
         setOnClickListener(this);
     }
 
+    public boolean isFinish() {
+        return isFinish;
+    }
+
     @SuppressLint("HandlerLeak")
     Handler han = new Handler() {
         public void handleMessage(android.os.Message msg) {
-            TimeButton.this.setText(textafter + "("+time / 1000 + ")");
+            TimeButton.this.setText(textafter + "(" + time / 1000 + ")");
             time -= 1000;
             if (time < 0) {
+                isFinish = true;
                 TimeButton.this.setEnabled(true);
                 TimeButton.this.setText(textbefore);
                 clearTimer();
@@ -60,8 +66,8 @@ public class TimeButton extends Button implements OnClickListener {
     private void initTimer() {
         time = lenght;
         t = new Timer();
+        isFinish = false;
         tt = new TimerTask() {
-
             @Override
             public void run() {
                 han.sendEmptyMessage(0x01);
@@ -91,10 +97,15 @@ public class TimeButton extends Button implements OnClickListener {
     public void onClick(View v) {
         if (mOnclickListener != null)
             mOnclickListener.onClick(v);
-        initTimer();
-        this.setText(textafter + "("+time / 1000 + ")");
-        this.setEnabled(false);
-        t.schedule(tt, 0, 1000);
+    }
+
+    public void startTimeCount() {
+        if (isFinish) {
+            initTimer();
+            this.setText(textafter + "(" + time / 1000 + ")");
+            this.setEnabled(false);
+            t.schedule(tt, 0, 1000);
+        }
     }
 
     public void onDestroy() {
@@ -105,7 +116,7 @@ public class TimeButton extends Button implements OnClickListener {
         clearTimer();
     }
 
-    public void onCreate(Bundle bundle) {
+    private void onCreate(Bundle bundle) {
         if (LaLaAppaction.longHashMap == null)
             return;
         if (LaLaAppaction.longHashMap.size() <= 0)
@@ -124,18 +135,18 @@ public class TimeButton extends Button implements OnClickListener {
         }
     }
 
-    public TimeButton setTextAfter(String text1) {
+    private TimeButton setTextAfter(String text1) {
         this.textafter = text1;
         return this;
     }
 
-    public TimeButton setTextBefore(String text0) {
+    private TimeButton setTextBefore(String text0) {
         this.textbefore = text0;
         this.setText(textbefore);
         return this;
     }
 
-    public TimeButton setLenght(long lenght) {
+    private TimeButton setLenght(long lenght) {
         this.lenght = lenght;
         return this;
     }

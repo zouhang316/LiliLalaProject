@@ -36,7 +36,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         btn_relogin = findView(R.id.btn_relogin);
 
 
-
     }
 
 
@@ -66,10 +65,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
-                    btn_getcode.setEnabled(false);
-                } else {
-                    btn_getcode.setEnabled(true);
+                String phoneNumber = et_phone.getText().toString().trim();
+                if (btn_getcode.isFinish()) {
+                    if (!CommUtils.isMobile(phoneNumber)) {
+                        btn_getcode.setEnabled(false);
+                    } else {
+                        btn_getcode.setEnabled(true);
+                    }
                 }
             }
         });
@@ -92,6 +94,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 showMessageDialog("", getString(R.string.hint_true_phone));
                 return;
             }
+            btn_getcode.startTimeCount();
         } else if (viewId == R.id.btn_next) {
             String mCode = et_code.getText().toString().trim();
             if (TextUtils.isEmpty(mPhoneNumber)) {

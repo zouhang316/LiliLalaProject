@@ -78,7 +78,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/srcodeicon"
             android:background="@drawable/getcode_shape"
-            android:enabled="false"
             android:paddingLeft="@dimen/ten_dp"
             android:paddingRight="@dimen/ten_dp"
             android:text="@string/str_getcode"
