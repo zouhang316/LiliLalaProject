@@ -9,9 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.lala.R;
@@ -19,6 +21,7 @@ import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.article.HolderView.LocalImageHolderView;
 import com.android.lala.article.activity.ArticleActivity;
+import com.android.lala.article.activity.SearchArticleActivity;
 import com.android.lala.article.adapter.ArticleRecommendAdapter;
 import com.android.lala.article.adapter.InformationArticleAdapter;
 import com.android.lala.article.adapter.InformationChannelViewAdapter;
@@ -32,6 +35,9 @@ import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.utils.LalaLog;
+import com.android.lala.utils.PreferenceManager;
+import com.android.lala.view.CircleImageView;
+import com.android.lala.view.MyListView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -57,8 +63,9 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
     private ConvenientBanner banner;
     private ArrayList<Integer> pageimagelist;
     private ListView mArticlelistview,mArticleComListview;
+    private MyListView subListview;
     private List<ArticleViewBean> articleViewBeanList,articleCommendBeanList;
-    private InformationArticleAdapter adapter;
+    private InformationArticleAdapter adapter,adapter2;
     private InformationChannelViewAdapter channelViewAdapter;
     private RecyclerView mChannelView;
     private TextView indcator1,indcator2,indcator3;
@@ -67,43 +74,46 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
     private PopupWindow pop_a,pop_b;
     private RadioButton radioButton_a,radioButton_b,radioButton_c;
     private View popview_a,popview_b;
-    String sort;
+    private ImageView search;
+    private ScrollView scrollView;
     @Override
     public void initData(Bundle savedInstanceState) {
+
         getPageImages();
         commDataDao=new CommDataDaoImpl(getActivity(),false,"article.json");
         httpListener=new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
-                if (what==HttpWhatContacts.GETARTICLE) {
-                    LalaLog.i("information", response);
-                    Helper helper = JsonResultUtils.helper(response);
-                    String article = helper.getContentByKey("article");
-                    articleViewBeanList = FastJsonHelper.getObjects(article, ArticleViewBean.class);
-                    if (null != articleViewBeanList) {
-                        adapter = new InformationArticleAdapter(getActivity(), articleViewBeanList);
-                        mArticlelistview.setAdapter(adapter);
-                    }
-                }else if (what==HttpWhatContacts.GETCHANNEL){
-                    LalaLog.i("information_channel", response);
-                    Helper helper=JsonResultUtils.helper(response);
-                    String channel=helper.getContentByKey("channels");
-                    List<ChannelViewBean> channelViewBeenList=FastJsonHelper.getObjects(channel,ChannelViewBean.class);
-                    if (null !=channelViewBeenList){
-                         channelViewAdapter=new InformationChannelViewAdapter(getActivity(),channelViewBeenList);
-                        mChannelView.setAdapter(channelViewAdapter);
-                    }
-                }else {
-                    LalaLog.i("information_com", response);
-                    Helper helper = JsonResultUtils.helper(response);
-                    String article = helper.getContentByKey("article");
-                    articleCommendBeanList = FastJsonHelper.getObjects(article, ArticleViewBean.class);
-                    if (null != articleViewBeanList) {
-                        adapter = new InformationArticleAdapter(getActivity(), articleCommendBeanList);
-                        mArticleComListview.setAdapter(adapter);
-                    }
+                switch (what){
+                    case HttpWhatContacts.GETARTICLE :
+                        LalaLog.i("information", response);
+                        Helper helper = JsonResultUtils.helper(response);
+                        String article = helper.getContentByKey("article");
+                        articleViewBeanList = FastJsonHelper.getObjects(article, ArticleViewBean.class);
+                        if (null != articleViewBeanList) {
+                            adapter = new InformationArticleAdapter(getActivity(), articleViewBeanList);
+                            mArticlelistview.setAdapter(adapter);
+                        }
+                        break;
+                    case HttpWhatContacts.GETCHANNEL:
+                        LalaLog.i("information_channel", response);
+                        Helper helper2=JsonResultUtils.helper(response);
+                        String channel=helper2.getContentByKey("channels");
+                        List<ChannelViewBean> channelViewBeenList=FastJsonHelper.getObjects(channel,ChannelViewBean.class);
+                        if (null !=channelViewBeenList){
+                            channelViewAdapter=new InformationChannelViewAdapter(getActivity(),channelViewBeenList);
+                            mChannelView.setAdapter(channelViewAdapter);
+                        }
+                        break;
+                    case HttpWhatContacts.GETARTICLERECOMMEND:
+                        LalaLog.i("information_com", response);
+                        Helper helper3 = JsonResultUtils.helper(response);
+                        String article2 = helper3.getContentByKey("article");
+                        articleCommendBeanList = FastJsonHelper.getObjects(article2, ArticleViewBean.class);
+                            adapter2 = new InformationArticleAdapter(getActivity(), articleCommendBeanList);
+                            mArticleComListview.setAdapter(adapter2);
+                        break;
                 }
-
             }
 
             @Override
@@ -152,7 +162,9 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         banner= (ConvenientBanner) view.findViewById(R.id.information_viewpage);
         mArticlelistview= (ListView) view.findViewById(R.id.information_articlelistview);
+        mArticlelistview.setFocusable(false);
         mArticleComListview= (ListView) view.findViewById(R.id.information_articlerecommendlist);
+        mArticleComListview.setFocusable(false);
         mArticlelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -175,12 +187,17 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
         });
         mChannelView= (RecyclerView) view.findViewById(R.id.information_channel_recycleview);
         mChannelView.setLayoutManager(manager);
+        subListview= (MyListView) view.findViewById(R.id.information_articlesublv);
         indcator1= (TextView) view.findViewById(R.id.radio_indcator1);
         indcator2= (TextView) view.findViewById(R.id.radio_indcator2);
         indcator3= (TextView) view.findViewById(R.id.radio_indcator3);
         radioButton_a= (RadioButton) view.findViewById(R.id.information_rbt_technology);
         radioButton_b= (RadioButton) view.findViewById(R.id.information_rbt_culture);
         radioButton_c= (RadioButton) view.findViewById(R.id.information_rbt_subscription);
+        scrollView= (ScrollView) view.findViewById(R.id.information_scrollview);
+        scrollView.smoothScrollTo(0,0);
+        search= (ImageView) view.findViewById(R.id.information_articlesearch);
+        search.getBackground().setAlpha(170);
         initViewPager();
         getDataByVolley();
         initListener();
@@ -215,7 +232,7 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
         VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETCHANNEL,
                 ApiContacts.INFORMATION_CHANNEL,httpListener,new HashMap<String, String>(),false);
         VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETARTICLERECOMMEND,
-                ApiContacts.INFORMATION_ARTICLE_COM,httpListener,new HashMap<String, String>(),true);
+                ApiContacts.INFORMATION_ARTICLE_COM,httpListener,new HashMap<String, String>(),false);
     }
 
     @Override
@@ -334,6 +351,9 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
                 showIndcator();
                 pop_b.dismiss();
                 break;
+            case R.id.information_articlesearch:
+                Intent intent=new Intent(getActivity(), SearchArticleActivity.class);
+                startActivity(intent);
         }
 
     }
@@ -342,6 +362,7 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
         radioButton_a.setOnClickListener(this);
         radioButton_b.setOnClickListener(this);
         radioButton_c.setOnClickListener(this);
+        search.setOnClickListener(this);
 
 
     }

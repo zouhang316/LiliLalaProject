@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/article_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="50dp"
         android:orientation="vertical">
+
+
         <ImageView
             android:id="@+id/article_toppic"
             android:layout_width="match_parent"
@@ -38,6 +46,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/acricle_title">
 
                 <com.android.lala.view.CircleImageView
@@ -90,24 +99,12 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginTop="20dp"
+            android:layerType="software"
             android:background="@drawable/dash_line" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="赞一个"
-            android:drawableLeft="@drawable/ic_xin"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/article_zan_button"/>
-
-        <TextView
+        <me.yifeiyuan.library.PeriscopeLayout
+            android:id="@+id/periscopelayout"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/nomarl_divider"/>
+            android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
@@ -156,7 +153,26 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:text="本文由  有范儿  发布，已有 348 篇文章" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/nomarl_divider"/>
+        <Button
+            android:id="@+id/article_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="赞一个"
+            android:drawableLeft="@drawable/ic_xin"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/article_zan_button"/>
         </LinearLayout>
+        </me.yifeiyuan.library.PeriscopeLayout>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -169,10 +185,46 @@
             android:dividerHeight="10dp"
             android:divider="@color/nomarl_divider"
             android:layout_height="390dp">
-
         </ListView>
-
-
     </LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:id="@+id/article_bottommenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_gravity="bottom">
 
-</ScrollView>
+        <ImageView
+            android:id="@+id/article_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:background="@drawable/ovalbtn_shape"/>
+        <ImageView
+            android:id="@+id/article_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ovalbtn_shape"/>
+        <ImageView
+            android:id="@+id/article_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/article_share"
+            android:src="@drawable/ic_fav"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ovalbtn_shape"/>
+        <ImageView
+            android:id="@+id/article_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_comments"
+            android:layout_toLeftOf="@+id/article_fav"
+            android:background="@drawable/ovalbtn_shape"/>
+
+
+    </RelativeLayout>
+</FrameLayout>

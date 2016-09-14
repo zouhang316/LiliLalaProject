@@ -39,7 +39,7 @@ public class InformationChannelViewAdapter extends BaseRecycleAdapter{
 
         final TextView title,fansnum;
         final ImageView imageView;
-        final View view= LayoutInflater.from(context).inflate(R.layout.information_channel_item,parent,false);
+        final View view= LayoutInflater.from(context).inflate(R.layout.item_information_channel,parent,false);
         title= (TextView) view.findViewById(R.id.channal_title);
         fansnum= (TextView) view.findViewById(R.id.channal_fansnum);
         imageView= (ImageView) view.findViewById(R.id.channal_image);
@@ -55,8 +55,7 @@ public class InformationChannelViewAdapter extends BaseRecycleAdapter{
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent=new Intent(context, ChannelActivity.class);
-                intent.putExtra("id",mList.get(position).getId());
-                intent.putExtra("toppic",mList.get(position).getChannel_background());
+                intent.putExtra("data",mList.get(position));
                 view.getContext().startActivity(intent);
             }
         };

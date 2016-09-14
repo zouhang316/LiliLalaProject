@@ -11,4 +11,8 @@ public class HttpWhatContacts {
     public static final int GETARTICLE=3;
     public static final int GETARTICLERECOMMEND=4;
     public static final int GETCHANNEL=6;
+    public static final int GETCODE=7;
+    public static final int ISEXISTENCE=8;
+    public static final int GETCOMMENT=9;
+    public static final int POSTCOMMENT=10;
 }

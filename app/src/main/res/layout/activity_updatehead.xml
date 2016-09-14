@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/updatehead"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@mipmap/test"
+        android:layout_centerInParent="true"/>
+    <Button
+        android:id="@+id/getheadbycamera"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/getheadbygallery"
+        android:background="@drawable/getcode_shape"
+        android:text="从照相机获取"/>
+    <Button
+        android:id="@+id/getheadbygallery"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/getcode_shape"
+        android:text="从相册获取"/>
+
+</RelativeLayout>

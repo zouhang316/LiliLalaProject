@@ -17,8 +17,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData(savedInstanceState);
         VolleyHelper.getInstance().init(getActivity());
+        initData(savedInstanceState);
     }
 
     @Override

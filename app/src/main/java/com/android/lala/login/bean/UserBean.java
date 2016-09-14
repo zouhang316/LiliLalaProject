@@ -9,33 +9,37 @@ import android.os.Parcelable;
  * @describe:Describe the function  of the current class
  */
 public class UserBean implements Parcelable {
-    private int userId;
-    private String password;// '登录密码',
-    private String name;//'姓名',
-    private String photo;//头像'
 
-    public int getUserId() {
-        return userId;
+    /**
+     * channels : null
+     * username : 15576310006
+     * photo :
+     * password : E5920BAA1A70598CAB8A81074533F581
+     * userId : 111
+     * name : 哩哩啦啦22
+     */
+
+    private Object channels;
+    private String username;
+    private String photo;
+    private String password;
+    private String userId;
+    private String name;
+
+    public Object getChannels() {
+        return channels;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setChannels(Object channels) {
+        this.channels = channels;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPhoto() {
@@ -46,13 +50,39 @@ public class UserBean implements Parcelable {
         this.photo = photo;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "UserBean{" +
-                "userId=" + userId +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                "channels=" + channels +
+                ", username='" + username + '\'' +
                 ", photo='" + photo + '\'' +
+                ", password='" + password + '\'' +
+                ", userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -63,23 +93,27 @@ public class UserBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.userId);
-        dest.writeString(this.password);
-        dest.writeString(this.name);
+        dest.writeParcelable((Parcelable) this.channels, flags);
+        dest.writeString(this.username);
         dest.writeString(this.photo);
+        dest.writeString(this.password);
+        dest.writeString(this.userId);
+        dest.writeString(this.name);
     }
 
     public UserBean() {
     }
 
     protected UserBean(Parcel in) {
-        this.userId = in.readInt();
-        this.password = in.readString();
-        this.name = in.readString();
+        this.channels = in.readParcelable(Object.class.getClassLoader());
+        this.username = in.readString();
         this.photo = in.readString();
+        this.password = in.readString();
+        this.userId = in.readString();
+        this.name = in.readString();
     }
 
-    public static final Creator<UserBean> CREATOR = new Creator<UserBean>() {
+    public static final Parcelable.Creator<UserBean> CREATOR = new Parcelable.Creator<UserBean>() {
         @Override
         public UserBean createFromParcel(Parcel source) {
             return new UserBean(source);

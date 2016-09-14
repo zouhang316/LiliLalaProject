@@ -26,7 +26,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_margin="@dimen/ten_dp"
-            android:src="@mipmap/email" />
+            android:src="@drawable/ic_phone_w" />
 
         <EditText
             android:id="@+id/lg_username"

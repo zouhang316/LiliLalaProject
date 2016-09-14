@@ -17,10 +17,17 @@
         android:scaleType="centerCrop"
         android:background="@mipmap/test"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/nomarl_divider"/>
+
     <com.android.lala.view.MyListView
         android:id="@+id/channalactivity_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:divider="@color/nomarl_divider"
+        android:dividerHeight="10dp">
 
     </com.android.lala.view.MyListView>
 </LinearLayout>

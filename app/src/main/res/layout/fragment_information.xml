@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/information_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,12 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.bigkoo.convenientbanner.ConvenientBanner
-            android:id="@+id/information_viewpage"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:canLoop="true">
-        </com.bigkoo.convenientbanner.ConvenientBanner>
+            android:layout_height="200dp">
+
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/information_viewpage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:canLoop="true">
+            </com.bigkoo.convenientbanner.ConvenientBanner>
+
+            <ImageView
+                android:id="@+id/information_articlesearch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_search2"
+                android:layout_margin="15dp"
+                android:background="@drawable/ovalbtn_shape" />
+        </FrameLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +110,15 @@
             android:dividerHeight="10dp"
             android:divider="@color/nomarl_divider"
             android:layout_height="675dp"
+            android:focusable="false"
             android:listSelector="#00000000"/>
+        <com.android.lala.view.MyListView
+            android:id="@+id/information_articlesublv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+        </com.android.lala.view.MyListView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,9 +148,10 @@
         <ListView
             android:id="@+id/information_articlerecommendlist"
             android:layout_width="match_parent"
-            android:layout_height="670dp"
+            android:layout_height="675dp"
             android:dividerHeight="10dp"
             android:divider="@color/nomarl_divider"
+            android:focusable="false"
             android:listSelector="#00000000"/>
 
     </LinearLayout>

@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.article.adapter.InformationArticleAdapter;
 import com.android.lala.article.bean.ArticleViewBean;
+import com.android.lala.article.bean.ChannelViewBean;
 import com.android.lala.base.BaseActivity;
 import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.fastjson.FastJsonHelper;
@@ -34,9 +37,9 @@ public class ChannelActivity extends BaseActivity implements AdapterView.OnItemC
        private List<ArticleViewBean> channelList;
     @Override
     protected void initData() {
+
         commDataDao=new CommDataDaoImpl(this,false,"");
         getIntentData();
-
         this.httpListener=new HttpListener() {
             @Override
             public void onSuccess(int what, Object response) {
@@ -59,14 +62,16 @@ public class ChannelActivity extends BaseActivity implements AdapterView.OnItemC
     }
 
     private void getIntentData() {
-        id=getIntent().getStringExtra("id");
-        toppic=getIntent().getStringExtra("toppic");
+        ChannelViewBean bean=getIntent().getParcelableExtra("data");
+        id=bean.getId();
+        toppic=bean.getChannel_background();
+        setTitle(bean.getChannels());
     }
 
     @Override
     protected void initListener() {
-
     }
+
 
     @Override
     protected boolean isShowToolBar() {

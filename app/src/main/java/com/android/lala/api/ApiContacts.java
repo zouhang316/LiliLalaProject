@@ -12,6 +12,8 @@ import com.android.lala.config.LalaConfig;
 public class ApiContacts {
     public static final String USER_LOGIN = LalaConfig.httpServer + "/app/login";
     public static final String USER_REGISTER = LalaConfig.httpServer + "/app/register";
+    public static final String REGISTER_GETCODE=LalaConfig.httpServer+"/app/mobilephone/sendVerifyCodeSms";
+    public static final String REGISTER_ISEXISTENCE=LalaConfig.httpServer+"/app/finduser";
     public static final String ARTICLE=LalaConfig.httpServer+ "/app/article";
     public static final String CONTENTURL=LalaConfig.httpServer+"/static/html";
     public static final String ARTICLERE_COM =LalaConfig.httpServer+"/app/article/channels";
@@ -21,4 +23,9 @@ public class ApiContacts {
     public static final String INFORMATION_ARTICLE_COM=LalaConfig.httpServer+"/app/recommend/article";
     public static final String CHANNEL=LalaConfig.httpServer+"/app/channels/article";
     public static final String INFORMATION_ARTICLE_SELETC=LalaConfig.httpServer+"/app/technology/screen";
+    public static final String ARTICLE_GETCOMMENT=LalaConfig.httpServer+"/app/article/comment";
+    public static final String ARTICLE_POSTCOMMENT=LalaConfig.httpServer+"/app/article/comment/save";
+    public static final String ARTICLE_SEARCH=LalaConfig.httpServer+"/app/article/search";
+    public static final String FORGETPASSWORD_GETCODE=LalaConfig.httpServer+"/app/mobilephone/sendVerifyCodeSms/password";
+    public static final String FORGETPASSWPRD_SETPWD=LalaConfig.httpServer+"/app/find_password";
 }

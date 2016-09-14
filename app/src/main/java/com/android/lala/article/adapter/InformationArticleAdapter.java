@@ -24,7 +24,7 @@ public class InformationArticleAdapter extends BaseListViewAdapter<ArticleViewBe
 
     @Override
     public int getLayoutId(int postion) {
-        return R.layout.information_article_item;
+        return R.layout.item_information_article;
     }
 
     @Override

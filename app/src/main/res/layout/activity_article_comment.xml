@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+
+    <ListView
+        android:id="@+id/commentlistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/comment_bottom"/>
+
+    <LinearLayout
+        android:id="@+id/comment_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_article_comment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/comment_shape"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:hint=" 添加评论..."/>
+
+        <Button
+            android:id="@+id/btn_article_sendcomment"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="34dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/getcode_shape"
+            android:layout_gravity="bottom"
+            android:textColor="@color/white"
+            android:layout_marginBottom="2dp"
+            android:text="发送"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

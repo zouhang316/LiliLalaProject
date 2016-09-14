@@ -21,18 +21,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".home.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.MainActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".register.SetingPwdActivity" />
         <activity android:name=".article.activity.ArticleActivity" />
-        <activity android:name=".article.activity.ChannelActivity"></activity>
+        <activity android:name=".article.activity.ChannelActivity" />
+        <activity android:name=".article.activity.ArticleCommentActivity"/>
+        <activity android:name=".article.activity.SearchArticleActivity"/>
+        <activity android:name=".forgetpassword.ForgetPassword"/>
+        <activity android:name=".forgetpassword.ForgetSetPwd"/>
+        <activity android:name=".My.activity.MoreActivity"/>
+        <activity android:name=".My.activity.PersonInfoActivity"/>
+        <activity android:name=".My.activity.UpdateHeadActivity"/>
+        <activity android:name=".My.activity.UpdateNameActivity"/>
     </application>
 
 </manifest>

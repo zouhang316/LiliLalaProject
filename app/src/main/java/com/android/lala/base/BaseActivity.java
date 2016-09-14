@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.lala.R;
 import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.http.VolleyHelper;
@@ -41,8 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (!isShowToolBar()) {
             getSupportActionBar().hide();
         }
-        initData();
         VolleyHelper.getInstance().init(this);
+        initData();
         onActivityCreate(savedInstanceState);
         initListener();
     }

@@ -182,14 +182,17 @@ public class RequestFactory {
     }
 
     private static void showProgress(boolean isLoading) {
-        if (isLoading && !mWaitDialog.isShowing()) {
+        if (isLoading) {
+            if (mWaitDialog.isShowing()) {
+                dismiss();
+            }
             mWaitDialog.setCanceledOnTouchOutside(false);
             mWaitDialog.show();
         }
     }
 
     private static void dismiss() {
-        if (mWaitDialog != null && mWaitDialog.isShowing())
+        if (mWaitDialog != null )
             mWaitDialog.dismiss();
     }
 }

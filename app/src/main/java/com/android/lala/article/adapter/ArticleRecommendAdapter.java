@@ -1,7 +1,6 @@
 package com.android.lala.article.adapter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.android.lala.R;
 
@@ -26,7 +25,7 @@ public class ArticleRecommendAdapter extends BaseListViewAdapter<ArticleViewBean
 
     @Override
     public int getLayoutId(int postion) {
-        return R.layout.recommend_articlebottm_item;
+        return R.layout.item_recommend_articlebottm;
     }
 
     @Override
