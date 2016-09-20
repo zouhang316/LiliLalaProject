@@ -15,4 +15,5 @@ public class HttpWhatContacts {
     public static final int ISEXISTENCE=8;
     public static final int GETCOMMENT=9;
     public static final int POSTCOMMENT=10;
+    public static final int UPLOADFILE=11;
 }

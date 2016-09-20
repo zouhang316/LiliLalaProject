@@ -20,7 +20,7 @@ android {
         ndk {
             moduleName "lala_native"//生成的so名称
             ldLibs "log", "z", "m"
-            abiFilters "armeabi"//, "armeabi-v7a", "x86"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
         }
     }
     buildTypes {
@@ -41,4 +41,7 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.14'
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'me.yifeiyuan.periscopelayout:library:1.0.0'
+    compile files('libs/aliyun-oss-sdk-android-2.0.3.jar')
+    compile files('libs/okhttp-2.7.0.jar')
+    compile files('libs/okio-1.6.0.jar')
 }

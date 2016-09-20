@@ -23,13 +23,13 @@
             android:background="@color/nomarl_text_color"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/updatepwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/updatepwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/nomarl_title_color"
@@ -45,13 +45,13 @@
         android:layout_height="15dp"
         android:background="@color/nomarl_divider"/>
     <LinearLayout
+        android:id="@+id/agreement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/agreement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/nomarl_title_color"
@@ -63,13 +63,13 @@
             android:background="@color/nomarl_text_color"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/currentversion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/currentversion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/nomarl_title_color"
@@ -81,13 +81,13 @@
             android:background="@color/nomarl_text_color"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/contactus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/contactus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/nomarl_title_color"
@@ -99,13 +99,13 @@
             android:background="@color/nomarl_text_color"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/goodcomment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/goodcomment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/nomarl_title_color"
@@ -121,13 +121,13 @@
         android:layout_height="15dp"
         android:background="@color/nomarl_divider"/>
     <LinearLayout
+        android:id="@+id/signout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/signout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/classf"

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/islogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <com.android.lala.view.CircleImageView
@@ -22,6 +21,7 @@
                     android:layout_margin="10dp"
                     android:src="@mipmap/test"/>
                 <RelativeLayout
+                    android:id="@+id/more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -53,6 +53,24 @@
                         android:layout_margin="15dp"
                         android:src="@drawable/ic_right" />
                 </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/onlogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.android.lala.view.CircleImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:src="@mipmap/test"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/nomarl_title_color"
+                    android:text="请点击登录"/>
+
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -439,5 +457,4 @@
                 android:layout_height="10dp"
                 android:background="@color/nomarl_divider"/>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>

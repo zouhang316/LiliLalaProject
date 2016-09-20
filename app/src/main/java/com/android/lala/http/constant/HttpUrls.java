@@ -6,5 +6,5 @@ package com.android.lala.http.constant;
  * @describe:API访问接口
  */
 public class HttpUrls {
-
+        public static final String OOSURL="http://shunxe.oss-cn-shenzhen.aliyuncs.com/";
 }

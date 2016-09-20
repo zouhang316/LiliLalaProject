@@ -75,9 +75,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     preferenceManager.putString("phone",userBean.getUsername());
                     preferenceManager.putString("name",userBean.getName());
                     preferenceManager.putString("photo",userBean.getPhoto());
-                    Intent intent = new Intent();
-                    intent.setClass(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    preferenceManager.putBoolean("islogin",true);
                     finish();
                 } else {
                     showMessageDialog("登录失败", "解析数据错误！");

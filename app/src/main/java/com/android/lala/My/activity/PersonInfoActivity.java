@@ -1,23 +1,36 @@
 package com.android.lala.My.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.android.lala.R;
 import com.android.lala.base.BaseActivity;
+import com.android.lala.utils.LalaLog;
+import com.android.lala.utils.PreferenceManager;
+import com.android.lala.view.CircleImageView;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 /**
  * Created by Administrator on 2016/9/14.
  */
 public class PersonInfoActivity extends BaseActivity implements View.OnClickListener{
     private RelativeLayout headview,nameview,phoneview;
+    private CircleImageView head;
+    private TextView name;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_personinfo);
         headview=findView(R.id.personinfo_headview);
         nameview=findView(R.id.personinfo_nameview);
         phoneview=findView(R.id.personinfo_phoneview);
+        head=findView(R.id.personinfo_head);
+        name=findView(R.id.personinfo_name);
         setTitle("个人信息");
 
     }
@@ -44,12 +57,23 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.personinfo_headview:
+                Intent updatehead=new Intent(this,UpdateHeadActivity.class);
+                startActivity(updatehead);
                 break;
             case R.id.personinfo_nameview:
+                Intent updatename=new Intent(this,UpdateNameActivity.class);
+                startActivity(updatename);
                 break;
             case R.id.personinfo_phoneview:
                 break;
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        PreferenceManager preferenceManager=PreferenceManager.getInstance(this);
+        name.setText(preferenceManager.getString("name",""));
+        Picasso.with(this).load(preferenceManager.getString("photo","")).into(head);
     }
 }

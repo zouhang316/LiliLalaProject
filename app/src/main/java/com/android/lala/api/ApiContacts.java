@@ -28,4 +28,6 @@ public class ApiContacts {
     public static final String ARTICLE_SEARCH=LalaConfig.httpServer+"/app/article/search";
     public static final String FORGETPASSWORD_GETCODE=LalaConfig.httpServer+"/app/mobilephone/sendVerifyCodeSms/password";
     public static final String FORGETPASSWPRD_SETPWD=LalaConfig.httpServer+"/app/find_password";
+    public static final String UPLOADFILE=LalaConfig.httpServer+"/app/user/photo";
+    public static final String UPDATENAME=LalaConfig.httpServer+"/app/user/name";
 }
