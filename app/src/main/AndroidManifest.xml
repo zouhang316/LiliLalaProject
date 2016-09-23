@@ -37,10 +37,11 @@
         <activity android:name=".article.activity.SearchArticleActivity"/>
         <activity android:name=".forgetpassword.ForgetPassword"/>
         <activity android:name=".forgetpassword.ForgetSetPwd"/>
-        <activity android:name=".My.activity.MoreActivity"/>
-        <activity android:name=".My.activity.PersonInfoActivity"/>
-        <activity android:name=".My.activity.UpdateHeadActivity"/>
-        <activity android:name=".My.activity.UpdateNameActivity"/>
+        <activity android:name=".my.activity.MoreActivity"/>
+        <activity android:name=".my.activity.PersonInfoActivity"/>
+        <activity android:name=".my.activity.UpdateHeadActivity"/>
+        <activity android:name=".my.activity.UpdateNameActivity"/>
+        <activity android:name=".market.activity.BuyActivity"/>
     </application>
 
 </manifest>

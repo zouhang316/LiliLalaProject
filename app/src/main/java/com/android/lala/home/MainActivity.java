@@ -11,7 +11,8 @@ import com.android.lala.R;
 import com.android.lala.base.BaseActivity;
 import com.android.lala.home.fragment.CircleFragment;
 import com.android.lala.home.fragment.InformationFragment;
-import com.android.lala.home.fragment.LeaderboardFragment;
+import com.android.lala.home.fragment.MarketFragment;
+import com.android.lala.home.fragment.MarketFragment_temp;
 import com.android.lala.home.fragment.MineFragment;
 import com.android.lala.home.fragment.PhotoFragment;
 import com.android.lala.utils.ExitAppliation;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private CircleFragment circleFragment;
     private InformationFragment informationFragment;
-    private LeaderboardFragment leaderboardFragment;
+    private MarketFragment_temp marketFragment;
     private MineFragment mineFragment;
     private PhotoFragment photoFragment;
 
@@ -95,12 +96,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 break;
             case LEADERBOARD_FLAG:
-                if (leaderboardFragment == null) {
-                    leaderboardFragment = new LeaderboardFragment();
-                    leaderboardFragment.setArguments(bundle);
-                    ft.add(R.id.fl_content, leaderboardFragment);
+                if (marketFragment == null) {
+                    marketFragment = new MarketFragment_temp();
+                    marketFragment.setArguments(bundle);
+                    ft.add(R.id.fl_content, marketFragment);
                 } else {
-                    ft.show(leaderboardFragment);
+                    ft.show(marketFragment);
                 }
                 break;
             case MINE_FLAG:
@@ -132,8 +133,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (informationFragment != null) {
             ft.hide(informationFragment);
         }
-        if (leaderboardFragment != null) {
-            ft.hide(leaderboardFragment);
+        if (marketFragment != null) {
+            ft.hide(marketFragment);
         }
         if (mineFragment != null) {
             ft.hide(mineFragment);
@@ -179,7 +180,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO Auto-generated method stub
         if(keyCode == KeyEvent.KEYCODE_BACK)
         {
             exitBy2Click(); //调用双击退出函数

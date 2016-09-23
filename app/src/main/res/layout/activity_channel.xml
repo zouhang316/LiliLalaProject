@@ -1,35 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.android.lala.article.activity.ChannelActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/activity_channeltoppic"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:background="@mipmap/test"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="@color/nomarl_divider"/>
-
-    <com.android.lala.view.MyListView
+    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
         android:id="@+id/channalactivity_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/nomarl_divider"
-        android:dividerHeight="10dp">
-
-    </com.android.lala.view.MyListView>
-</LinearLayout>
-
-</ScrollView>
+        android:layout_height="match_parent" />
+</RelativeLayout>

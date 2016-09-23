@@ -1,4 +1,4 @@
-package com.android.lala.My.activity;
+package com.android.lala.my.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

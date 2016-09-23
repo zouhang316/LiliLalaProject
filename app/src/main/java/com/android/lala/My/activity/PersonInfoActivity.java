@@ -1,20 +1,16 @@
-package com.android.lala.My.activity;
+package com.android.lala.my.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.lala.R;
 import com.android.lala.base.BaseActivity;
-import com.android.lala.utils.LalaLog;
 import com.android.lala.utils.PreferenceManager;
 import com.android.lala.view.CircleImageView;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 /**
  * Created by Administrator on 2016/9/14.

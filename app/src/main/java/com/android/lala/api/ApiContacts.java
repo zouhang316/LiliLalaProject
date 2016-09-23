@@ -30,4 +30,8 @@ public class ApiContacts {
     public static final String FORGETPASSWPRD_SETPWD=LalaConfig.httpServer+"/app/find_password";
     public static final String UPLOADFILE=LalaConfig.httpServer+"/app/user/photo";
     public static final String UPDATENAME=LalaConfig.httpServer+"/app/user/name";
+    public static final String MARKET_GETNEW=LalaConfig.httpServer+"/app/market";
+    public static final String MARKET_GETOLD=LalaConfig.httpServer+"/app/market/xia";
+    public static final String BUY_GETCONTENT=LalaConfig.httpServer+"/app/market/product";
 }
+

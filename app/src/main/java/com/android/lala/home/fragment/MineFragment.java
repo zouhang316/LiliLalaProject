@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.android.lala.My.activity.MoreActivity;
+import com.android.lala.my.activity.MoreActivity;
 import com.android.lala.R;
 import com.android.lala.base.BaseFragment;
 import com.android.lala.login.LoginActivity;

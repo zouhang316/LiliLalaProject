@@ -1,4 +1,4 @@
-package com.android.lala.My.activity;
+package com.android.lala.my.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,10 +19,8 @@ import com.alibaba.sdk.android.oss.model.PutObjectResult;
 import com.android.lala.LaLaAppaction;
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
-import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.base.BaseActivity;
 import com.android.lala.base.commbuinese.CommDataDaoImpl;
-import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.constant.HttpUrls;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.utils.LalaLog;

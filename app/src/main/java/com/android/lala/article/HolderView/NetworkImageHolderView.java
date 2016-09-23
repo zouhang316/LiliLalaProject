@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by Sai on 15/8/4.
  * 网络图片加载例子
@@ -22,6 +24,6 @@ public class NetworkImageHolderView implements Holder<String> {
     @Override
     public void UpdateUI(Context context,int position, String data) {
 //        imageView.setImageResource(R.drawable.ic_default_adimage);
-//        Picasso.getInstance().displayImage(data,imageView);
+        Picasso.with(context).load(data).into(imageView);
     }
 }

@@ -16,4 +16,7 @@ public class HttpWhatContacts {
     public static final int GETCOMMENT=9;
     public static final int POSTCOMMENT=10;
     public static final int UPLOADFILE=11;
+    public static final int GETNEW=12;
+    public static final int GETOLD=13;
+    public static final int GETCONTENT=13;
 }
