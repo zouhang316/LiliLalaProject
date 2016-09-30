@@ -19,4 +19,7 @@ public class HttpWhatContacts {
     public static final int GETNEW=12;
     public static final int GETOLD=13;
     public static final int GETCONTENT=13;
+    public static final int GETUP=14;
+    public static final int GETDOWN=16;
+    public static final int GETHEAD=15;
 }

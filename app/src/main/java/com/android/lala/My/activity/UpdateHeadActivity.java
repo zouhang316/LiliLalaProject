@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.ServiceException;
 import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback;
@@ -49,17 +51,20 @@ import java.util.Map;
 public class UpdateHeadActivity extends BaseActivity implements View.OnClickListener{
     private HttpListener<String> httpListener;
     private ImageView headimage;
-    private Button byCamera,byGallery,sava;
+    private Button byCamera,byGallery;
+    private TextView sava;
     private String headUrl;
     private String userid;
     private String Mypath;
     private Bitmap headbitmap;
+    private ImageView back;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_updatehead);
         byCamera=findView(R.id.getheadbycamera);
         byGallery=findView(R.id.getheadbygallery);
         headimage=findView(R.id.updatehead);
+        back=findView(R.id.back);
         sava=findView(R.id.save);
         Picasso.with(this).load(headUrl).into(headimage);
         setTitle("修改头像");
@@ -89,11 +94,12 @@ public class UpdateHeadActivity extends BaseActivity implements View.OnClickList
         byGallery.setOnClickListener(this);
         byCamera.setOnClickListener(this);
         sava.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
     @Override
     protected boolean isShowToolBar() {
-        return true;
+        return false;
     }
 
     @Override
@@ -115,6 +121,9 @@ public class UpdateHeadActivity extends BaseActivity implements View.OnClickList
             case R.id.save:
                 saveBitmap(headbitmap);
                 OOSuploaddata(Mypath+"/head.jpg");
+                break;
+            case R.id.back:
+                finish();
                 break;
 
         }

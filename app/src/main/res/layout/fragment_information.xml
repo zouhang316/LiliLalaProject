@@ -107,7 +107,6 @@
         <ListView
             android:id="@+id/information_articlelistview"
             android:layout_width="match_parent"
-            android:dividerHeight="10dp"
             android:divider="@color/nomarl_divider"
             android:layout_height="675dp"
             android:focusable="false"
@@ -149,8 +148,6 @@
             android:id="@+id/information_articlerecommendlist"
             android:layout_width="match_parent"
             android:layout_height="675dp"
-            android:dividerHeight="10dp"
-            android:divider="@color/nomarl_divider"
             android:focusable="false"
             android:listSelector="#00000000"/>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lala</string>
+    <string name="app_name">蚂蚁新空</string>
     <string name="setting">设置</string>
     <string name="dialog_ok">确定</string>
     <string name="loading">正在加载中...</string>
@@ -33,6 +33,8 @@
     <string name="hint_true_pwd">填写6~18位包含字母数字的密码</string>
     <string name="hint_align_pwd">再次确认密码</string>
     <string name="str_finish">完成注册</string>
+    <string name="hint_old_pwd">填写旧密码</string>
+    <string name="hint_new_pwd">填写新密码</string>
 
     <string name="hint_no_layout">需要重新定义你的Fragment Layout</string>
     <string name="str_information">资讯</string>
@@ -40,4 +42,9 @@
     <string name="str_photo">照片</string>
     <string name="str_circle">圈子</string>
     <string name="str_mine">我的</string>
+    <string name="mychannel_text">申请自频道目前只能在网页版操作</string>
+    <string name="mychannel_text2">请在电脑等陆www.lelelala.net申请自频道</string>
+    <string name="mychannel_text3">开通后可在手机端管理自频道</string>
+    <string name="feenback_text1">您可以通过微信公众号向我们发送意见反馈，我们将在第一时间回复您！</string>
+    <string name="feenback_text2">微信公众号 : 哩哩啦啦( lelelala )</string>
 </resources>

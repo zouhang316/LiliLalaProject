@@ -43,7 +43,7 @@ public class MarketOldAdapter extends BaseRecycleAdapter {
         View view= LayoutInflater.from(mContext).inflate(R.layout.market_old_item,parent,false);
         title=(TextView) view.findViewById(R.id.market_recycle_item_title);
         price=(TextView) view.findViewById(R.id.market_recycle_item_price);
-        likenum=(TextView) view.findViewById(R.id.market_recycle_item_likenum);
+       // likenum=(TextView) view.findViewById(R.id.market_recycle_item_likenum);
         image=(ImageView) view.findViewById(R.id.market_recycle_item_image);
         BaseRecycleViewHolder holder=new BaseRecycleViewHolder(view) {
             @Override

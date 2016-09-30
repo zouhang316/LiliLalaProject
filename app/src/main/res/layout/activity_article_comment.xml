@@ -31,6 +31,7 @@
             android:background="@drawable/comment_shape"
             android:layout_gravity="center"
             android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             android:hint=" 添加评论..."/>
 
         <Button

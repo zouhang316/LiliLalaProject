@@ -37,6 +37,7 @@ public class ForgetSetPwd extends BaseActivity implements View.OnClickListener{
         et_password = findView(R.id.et_password);
         cross = findView(R.id.cross);
         btn_finish = findView(R.id.btn_finish);
+        btn_finish.setText("完成修改");
     }
 
     @Override
@@ -45,6 +46,7 @@ public class ForgetSetPwd extends BaseActivity implements View.OnClickListener{
         httpListener=new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
+                showToastMsg("修改成功，下次使用新密码登录");
                 Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();

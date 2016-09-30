@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 public class PersonInfoActivity extends BaseActivity implements View.OnClickListener{
     private RelativeLayout headview,nameview,phoneview;
     private CircleImageView head;
-    private TextView name;
+    private TextView name,phone;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_personinfo);
@@ -27,6 +27,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
         phoneview=findView(R.id.personinfo_phoneview);
         head=findView(R.id.personinfo_head);
         name=findView(R.id.personinfo_name);
+        phone=findView(R.id.personinfo_phone);
         setTitle("个人信息");
 
     }
@@ -70,6 +71,7 @@ public class PersonInfoActivity extends BaseActivity implements View.OnClickList
         super.onResume();
         PreferenceManager preferenceManager=PreferenceManager.getInstance(this);
         name.setText(preferenceManager.getString("name",""));
+        phone.setText(preferenceManager.getString("phone",""));
         Picasso.with(this).load(preferenceManager.getString("photo","")).into(head);
     }
 }

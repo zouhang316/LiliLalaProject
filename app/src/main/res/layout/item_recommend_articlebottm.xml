@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:focusable="false"
-            android:background="@mipmap/test"/>
+            android:background="@color/defult_image_bg"/>
     </RelativeLayout>
 
     <RelativeLayout

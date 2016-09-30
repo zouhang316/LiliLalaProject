@@ -162,11 +162,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:background="@color/nomarl_divider"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/market_haohuo"
+                    android:layout_height="20dp"
+                    android:layout_width="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/market_xinhuo"/>
+
+                <TextView
+                    android:id="@+id/market_text_haohuo"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_toRightOf="@+id/market_haohuo"
+                    android:layout_alignBottom="@+id/market_haohuo"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    android:text="有好货"
+                    android:textColor="#FFA726"/>
+
+                <TextView
+                    android:id="@+id/morecommodity"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignBottom="@+id/market_text_haohuo"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="更多"
+                    android:textColor="#FFA726"/>
+            </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/oldrecycleview"
                     android:layout_width="match_parent"
-                    android:layout_height="1100dp"/>
+                    android:layout_height="match_parent"/>
 </LinearLayout>
 
 </ScrollView>

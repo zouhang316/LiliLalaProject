@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants"
-    android:layout_height="125dp">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:orientation="horizontal">
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -15,7 +19,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:focusable="false"
-            android:background="@mipmap/test"/>
+            android:background="@color/defult_image_bg"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -63,5 +67,10 @@
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/nomarl_divider"/>
 
 </LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mychannel_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mychannel_tv2"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/nomarl_title_color"
+        android:gravity="center"
+        android:text="@string/mychannel_text"
+        />
+
+    <TextView
+        android:id="@+id/mychannel_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/nomarl_title_color"
+        android:layout_above="@+id/mychannel_tv3"
+        android:text="@string/mychannel_text2"
+        android:textIsSelectable="true"
+        />
+    <TextView
+        android:id="@+id/mychannel_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/nomarl_title_color"
+        android:text="@string/mychannel_text3"
+        />
+
+
+</RelativeLayout>

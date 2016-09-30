@@ -238,6 +238,7 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
+        LalaLog.i("informationstate","resum");
         banner.startTurning(3000);
     }
 

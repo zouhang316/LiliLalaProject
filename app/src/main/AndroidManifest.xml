@@ -17,7 +17,7 @@
         android:name=".LaLaAppaction"
         android:allowBackup="true"
         android:debuggable="true"
-        android:icon="@mipmap/lelelala"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -42,6 +42,15 @@
         <activity android:name=".my.activity.UpdateHeadActivity"/>
         <activity android:name=".my.activity.UpdateNameActivity"/>
         <activity android:name=".market.activity.BuyActivity"/>
+        <activity android:name=".circle.activity.ActionActivity"/>
+        <activity android:name=".circle.activity.CircleActivity"/>
+        <activity android:name=".circle.activity.CircleArticleActivity"/>
+        <activity android:name=".circle.activity.UserHomeActivity"/>
+        <activity android:name=".my.activity.UpdatePwdActivity"/>
+        <activity android:name=".circle.activity.ShareManActivity"/>
+        <activity android:name=".market.activity.MoreCommodityActivity"/>
+        <activity android:name=".my.activity.MyChannelActivity"/>
+        <activity android:name=".my.activity.FeedbackActivity"/>
     </application>
 
 </manifest>

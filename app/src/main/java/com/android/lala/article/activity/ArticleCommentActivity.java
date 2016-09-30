@@ -54,6 +54,7 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
                 }
 
                 if (what==HttpWhatContacts.POSTCOMMENT){
+                    mContent.setText("");
                     LalaLog.i("comment",response);
                     Helper helper= JsonResultUtils.helper(response);
                     String comment=helper.getContentByKey("comment");

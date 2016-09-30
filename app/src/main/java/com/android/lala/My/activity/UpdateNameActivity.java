@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
@@ -21,7 +23,7 @@ import java.util.HashMap;
 public class UpdateNameActivity extends BaseActivity  {
     private HttpListener<String> httpListener;
     private EditText name;
-    private Button commit;
+    private TextView commit;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_updatename);
@@ -66,7 +68,7 @@ public class UpdateNameActivity extends BaseActivity  {
 
     @Override
     protected boolean isShowToolBar() {
-        return true;
+        return false;
     }
 
     private void updateName(){

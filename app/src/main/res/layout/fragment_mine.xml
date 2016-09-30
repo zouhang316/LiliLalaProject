@@ -63,7 +63,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
-                    android:src="@mipmap/test"/>
+                    android:src="@drawable/ic_defult_head"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,6 +108,7 @@
                 android:layout_marginLeft="55dp"
                 android:background="@color/nomarl_divider"/>
             <RelativeLayout
+                android:id="@+id/mychannel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
@@ -132,12 +133,14 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
+            <!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="55dp"
                 android:background="@color/nomarl_divider"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -163,6 +166,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
+            -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -331,6 +335,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
+            <!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -392,6 +397,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
+            -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -428,6 +434,7 @@
                 android:layout_marginLeft="55dp"
                 android:background="@color/nomarl_divider"/>
             <RelativeLayout
+                android:id="@+id/feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView

@@ -18,7 +18,7 @@
             android:layout_height="130dp"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
-            android:src="@mipmap/test"/>
+            android:background="@color/defult_image_bg"/>
 
         <TextView
             android:id="@+id/market_recycle_item_title"

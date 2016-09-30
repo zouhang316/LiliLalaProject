@@ -6,16 +6,21 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.android.lala.my.activity.FeedbackActivity;
 import com.android.lala.my.activity.MoreActivity;
 import com.android.lala.R;
 import com.android.lala.base.BaseFragment;
 import com.android.lala.login.LoginActivity;
+import com.android.lala.my.activity.MyChannelActivity;
 import com.android.lala.utils.PreferenceManager;
 import com.android.lala.view.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener{
     private RelativeLayout more;
+    private RelativeLayout mychannel;
+    private RelativeLayout feedback;
     private LinearLayout islogin,onlogin;
     private CircleImageView mHead;
     private TextView mName;
@@ -31,6 +36,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         mName= (TextView) view.findViewById(R.id.my_name);
         islogin= (LinearLayout) view.findViewById(R.id.islogin);
         onlogin=(LinearLayout) view.findViewById(R.id.onlogin);
+        mychannel= (RelativeLayout) view.findViewById(R.id.mychannel);
+        feedback= (RelativeLayout) view.findViewById(R.id.feedback);
         initListener();
 
 
@@ -38,6 +45,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     private void initListener(){
         more.setOnClickListener(this);
         onlogin.setOnClickListener(this);
+        mychannel.setOnClickListener(this);
+        feedback.setOnClickListener(this);
     }
 
     @Override
@@ -72,6 +81,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
             case R.id.onlogin :
                 Intent login =new Intent(getActivity(), LoginActivity.class);
                 startActivity(login);
+                break;
+            case R.id.mychannel:
+                Intent mychannel=new Intent(getActivity(), MyChannelActivity.class);
+                startActivity(mychannel);
+                break;
+            case R.id.feedback :
+                Intent feedback=new Intent(getActivity(), FeedbackActivity.class);
+                startActivity(feedback);
         }
 
     }

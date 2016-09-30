@@ -76,6 +76,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     preferenceManager.putString("name",userBean.getName());
                     preferenceManager.putString("photo",userBean.getPhoto());
                     preferenceManager.putBoolean("islogin",true);
+//                    Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+//                    startActivity(intent);
                     finish();
                 } else {
                     showMessageDialog("登录失败", "解析数据错误！");
@@ -111,6 +113,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }else if (viewId==R.id.forgotpasswordtext){
             Intent intent1=new Intent(this, ForgetPassword.class);
             startActivity(intent1);
+            finish();
         }
     }
 

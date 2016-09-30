@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:lines="2"
+        android:lineSpacingExtra="10dp"
+        android:textColor="@color/nomarl_title_color"
+        android:gravity="center"
+        android:text="@string/feenback_text1"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/dash_line"
+        android:layerType="software"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:textColor="@color/nomarl_title_color"
+        android:text="@string/feenback_text2"
+        android:drawableLeft="@drawable/ic_feedback"
+        android:drawablePadding="10dp"
+        />
+
+</LinearLayout>

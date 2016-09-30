@@ -25,7 +25,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected final int INFORMATION_FLAG = 0x101;
     protected final int LEADERBOARD_FLAG = 0x102;
     protected final int MINE_FLAG = 0x103;
-    protected final int PHOTO_FLAG = 0x104;
 
     private RadioGroup rg_tabs;
     private RadioButton rb_information;
@@ -38,7 +37,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private InformationFragment informationFragment;
     private MarketFragment_temp marketFragment;
     private MineFragment mineFragment;
-    private PhotoFragment photoFragment;
 
     private FragmentTransaction ft;
 
@@ -113,15 +111,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     ft.show(mineFragment);
                 }
                 break;
-            case PHOTO_FLAG:
-                if (photoFragment == null) {
-                    photoFragment = new PhotoFragment();
-                    photoFragment.setArguments(bundle);
-                    ft.add(R.id.fl_content, photoFragment);
-                } else {
-                    ft.show(photoFragment);
-                }
-                break;
         }
         ft.commit();
     }
@@ -138,9 +127,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (mineFragment != null) {
             ft.hide(mineFragment);
-        }
-        if (photoFragment != null) {
-            ft.hide(photoFragment);
         }
     }
 
@@ -165,9 +151,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             rb_mine.setChecked(true);
             showContentFragment(MINE_FLAG, bundle);
         } else if (R.id.rb_photo == viewId) {
-            setTitle(getString(R.string.str_photo));
             rb_photo.setChecked(true);
-            showContentFragment(PHOTO_FLAG, bundle);
         }
     }
 

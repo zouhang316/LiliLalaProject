@@ -54,6 +54,8 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(personinfo);
                 break;
             case R.id.updatepwd :
+                Intent updatepwd=new Intent(this,UpdatePwdActivity.class);
+                startActivity(updatepwd);
                 break;
             case R.id.agreement :
                 break;

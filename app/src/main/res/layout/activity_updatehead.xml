@@ -3,25 +3,49 @@
     android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/white"
-        android:background="@null"
-        android:visibility="gone"
-        android:text="保存"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/cardview_dark_background">
+        <ImageView
+            android:id="@+id/back"
+            android:padding="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_left_white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="修改头像"
+            android:textSize="19sp"
+            android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/classf"
+            android:textSize="12sp"
+            android:background="@drawable/guanzhu_shape"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:text="完成"/>
+    </RelativeLayout>
     <ImageView
         android:id="@+id/updatehead"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@mipmap/test"
         android:layout_centerInParent="true"/>
     <Button
         android:id="@+id/getheadbycamera"
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/getheadbygallery"
@@ -30,7 +54,7 @@
     <Button
         android:id="@+id/getheadbygallery"
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"

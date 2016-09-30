@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <com.android.lala.view.CircleImageView
+            android:id="@+id/shareman_head"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/test"/>
+        <TextView
+            android:id="@+id/shareman_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="燃烧的企鹅"
+            android:textColor="@color/nomarl_title_color"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/shareman_head" />
+        <TextView
+            android:id="@+id/shareman_fansnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shareman_name"
+            android:layout_marginTop="5dp"
+            android:layout_alignLeft="@id/shareman_name"
+            android:text="粉丝数 ： 3475"/>
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/louzhu_shape"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:text="+ 关注"/>
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shareman_child_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
