@@ -1,4 +1,4 @@
-package com.android.lala.my.activity;
+package com.android.lala.mine.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -16,16 +16,8 @@ import com.android.lala.http.listener.HttpListener;
 import com.android.lala.utils.CommUtils;
 import com.android.lala.utils.LalaLog;
 import com.android.lala.utils.PreferenceManager;
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ZH on 2016/9/28.

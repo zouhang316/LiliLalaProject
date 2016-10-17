@@ -1,8 +1,10 @@
-package com.android.lala.my.activity;
+package com.android.lala.mine.activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+
 import com.android.lala.R;
 import com.android.lala.base.BaseActivity;
 import com.android.lala.utils.PreferenceManager;
@@ -50,11 +52,11 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.personinfo :
-                Intent personinfo=new Intent(this,PersonInfoActivity.class);
+                Intent personinfo=new Intent(this, PersonInfoActivity.class);
                 startActivity(personinfo);
                 break;
             case R.id.updatepwd :
-                Intent updatepwd=new Intent(this,UpdatePwdActivity.class);
+                Intent updatepwd=new Intent(this, UpdatePwdActivity.class);
                 startActivity(updatepwd);
                 break;
             case R.id.agreement :

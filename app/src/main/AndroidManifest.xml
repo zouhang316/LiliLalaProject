@@ -37,20 +37,20 @@
         <activity android:name=".article.activity.SearchArticleActivity"/>
         <activity android:name=".forgetpassword.ForgetPassword"/>
         <activity android:name=".forgetpassword.ForgetSetPwd"/>
-        <activity android:name=".my.activity.MoreActivity"/>
-        <activity android:name=".my.activity.PersonInfoActivity"/>
-        <activity android:name=".my.activity.UpdateHeadActivity"/>
-        <activity android:name=".my.activity.UpdateNameActivity"/>
+        <activity android:name=".mine.activity.MoreActivity"/>
+        <activity android:name=".mine.activity.PersonInfoActivity"/>
+        <activity android:name=".mine.activity.UpdateHeadActivity"/>
+        <activity android:name=".mine.activity.UpdateNameActivity"/>
         <activity android:name=".market.activity.BuyActivity"/>
         <activity android:name=".circle.activity.ActionActivity"/>
         <activity android:name=".circle.activity.CircleActivity"/>
         <activity android:name=".circle.activity.CircleArticleActivity"/>
         <activity android:name=".circle.activity.UserHomeActivity"/>
-        <activity android:name=".my.activity.UpdatePwdActivity"/>
+        <activity android:name=".mine.activity.UpdatePwdActivity"/>
         <activity android:name=".circle.activity.ShareManActivity"/>
         <activity android:name=".market.activity.MoreCommodityActivity"/>
-        <activity android:name=".my.activity.MyChannelActivity"/>
-        <activity android:name=".my.activity.FeedbackActivity"/>
+        <activity android:name=".mine.activity.MyChannelActivity"/>
+        <activity android:name=".mine.activity.FeedbackActivity"/>
     </application>
 
 </manifest>

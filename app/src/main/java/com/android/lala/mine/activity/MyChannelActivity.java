@@ -1,4 +1,4 @@
-package com.android.lala.my.activity;
+package com.android.lala.mine.activity;
 
 import android.os.Bundle;
 
@@ -9,7 +9,7 @@ import com.android.lala.base.BaseActivity;
  * Created by ZH on 2016/9/30.
  * 497239511@qq.com
  */
-public class FeedbackActivity extends BaseActivity{
+public class MyChannelActivity extends BaseActivity {
     @Override
     protected void initData() {
 
@@ -27,7 +27,8 @@ public class FeedbackActivity extends BaseActivity{
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
-            setContentView(R.layout.activity_feedback);
-            setTitle("意见反馈");
+        setContentView(R.layout.activity_mychannel);
+        setTitle("自频道");
+
     }
 }

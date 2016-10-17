@@ -19,10 +19,8 @@ import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.home.fragment.CircleFragment;
 import com.android.lala.home.fragment.InformationFragment;
-import com.android.lala.home.fragment.MarketFragment;
 import com.android.lala.home.fragment.MarketFragment_temp;
 import com.android.lala.home.fragment.MineFragment;
-import com.android.lala.home.fragment.PhotoFragment;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.utils.ExitAppliation;
@@ -43,7 +41,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RadioGroup rg_tabs;
     private RadioButton rb_information;
     private RadioButton rb_list;
-    private ImageView   photo;
+    private ImageView photo;
     private RadioButton rb_circle;
     private RadioButton rb_mine;
 
@@ -73,16 +71,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        commDataDao=new CommDataDaoImpl(this,false,"");
-        httpListener=new HttpListener<String>() {
+        commDataDao = new CommDataDaoImpl(this, false, "");
+        httpListener = new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
-                Helper helper= JsonResultUtils.helper(response);
-                String data=helper.getContentByKey("upload");
-                VersinBean bean= FastJsonHelper.getObject(data, VersinBean.class);
-                PreferenceManager manager=PreferenceManager.getInstance(MainActivity.this);
-                manager.putInt("versioncode",bean.getVersion());
-                updateManager=new UpdateManager(MainActivity.this,bean.getVersion(),bean.getVersion_introduce());
+                Helper helper = JsonResultUtils.helper(response);
+                String data = helper.getContentByKey("upload");
+                VersinBean bean = FastJsonHelper.getObject(data, VersinBean.class);
+                PreferenceManager manager = PreferenceManager.getInstance(MainActivity.this);
+                manager.putInt("versioncode", bean.getVersion());
+                updateManager = new UpdateManager(MainActivity.this, bean.getVersion(), bean.getVersion_introduce());
                 updateManager.getUpdateInfo();
             }
 
@@ -187,25 +185,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             rb_mine.setChecked(true);
             showContentFragment(MINE_FLAG, bundle);
         } else if (R.id.rb_photo == viewId) {
-            LalaLog.i("state","photo start");
+            LalaLog.i("state", "photo start");
         }
     }
 
-    public void getVerionByVolley(){
-        VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.GETNEW, ApiContacts.GETVERSIONINFO,httpListener,new HashMap<String, String>(),false);
+    public void getVerionByVolley() {
+        VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.GETNEW, ApiContacts.GETVERSIONINFO, httpListener, new HashMap<String, String>(), false);
     }
 
     @Override
     protected boolean isShowToolBar() {
         return false;
     }
+
     /**
      * 菜单、返回键响应
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK)
-        {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             exitBy2Click(); //调用双击退出函数
         }
         return false;

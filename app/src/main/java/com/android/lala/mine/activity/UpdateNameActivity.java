@@ -1,8 +1,7 @@
-package com.android.lala.my.activity;
+package com.android.lala.mine.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 

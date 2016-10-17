@@ -7,12 +7,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.lala.my.activity.FeedbackActivity;
-import com.android.lala.my.activity.MoreActivity;
+import com.android.lala.mine.activity.FeedbackActivity;
+import com.android.lala.mine.activity.MoreActivity;
 import com.android.lala.R;
 import com.android.lala.base.BaseFragment;
 import com.android.lala.login.LoginActivity;
-import com.android.lala.my.activity.MyChannelActivity;
+import com.android.lala.mine.activity.MyChannelActivity;
 import com.android.lala.utils.PreferenceManager;
 import com.android.lala.view.CircleImageView;
 import com.squareup.picasso.Picasso;

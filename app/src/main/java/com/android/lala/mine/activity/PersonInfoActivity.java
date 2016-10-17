@@ -1,4 +1,4 @@
-package com.android.lala.my.activity;
+package com.android.lala.mine.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
