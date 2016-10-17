@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.android.lala"
+        applicationId "com.example.lala.activity"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1

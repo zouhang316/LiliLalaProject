@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.android.lala.R;
@@ -31,15 +32,19 @@ import java.util.List;
 public class SearchArticleActivity extends BaseActivity implements View.OnClickListener{
     private HttpListener<String> httpListener;
     private TextView search;
+    private TextView searchNum;
     private EditText searchview;
     private ListView mList;
     private List<ArticleSearchBean> searchBeanList;
+    private LinearLayout searchInfo;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_searcharticle);
         searchview=findView(R.id.search_article_searchedit);
         search=findView(R.id.search_article_search);
         mList=findView(R.id.search_articlelv);
+        searchNum=findView(R.id.search_num);
+        searchInfo=findView(R.id.search_info);
         searchview.addTextChangedListener(textWatcher);
     }
 
@@ -52,6 +57,8 @@ public class SearchArticleActivity extends BaseActivity implements View.OnClickL
                 Helper helper= JsonResultUtils.helper(response);
                 String content=helper.getContentByKey("channels");
                 searchBeanList= FastJsonHelper.getObjects(content,ArticleSearchBean.class);
+                searchInfo.setVisibility(View.VISIBLE);
+                searchNum.setText("("+searchBeanList.size()+"条搜索结果)");
                 ArticleSearchAdapter adapter=new ArticleSearchAdapter(getApplicationContext(),searchBeanList);
                 mList.setAdapter(adapter);
                 mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

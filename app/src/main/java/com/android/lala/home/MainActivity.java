@@ -4,19 +4,33 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.android.lala.R;
+import com.android.lala.api.ApiContacts;
+import com.android.lala.api.HttpWhatContacts;
 import com.android.lala.base.BaseActivity;
+import com.android.lala.base.commbuinese.CommDataDaoImpl;
+import com.android.lala.circle.bean.VersinBean;
+import com.android.lala.fastjson.FastJsonHelper;
+import com.android.lala.fastjson.Helper;
+import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.home.fragment.CircleFragment;
 import com.android.lala.home.fragment.InformationFragment;
 import com.android.lala.home.fragment.MarketFragment;
 import com.android.lala.home.fragment.MarketFragment_temp;
 import com.android.lala.home.fragment.MineFragment;
 import com.android.lala.home.fragment.PhotoFragment;
+import com.android.lala.http.VolleyHelper;
+import com.android.lala.http.listener.HttpListener;
 import com.android.lala.utils.ExitAppliation;
+import com.android.lala.utils.LalaLog;
+import com.android.lala.utils.PreferenceManager;
+import com.android.lala.utils.UpdateManager;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,7 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RadioGroup rg_tabs;
     private RadioButton rb_information;
     private RadioButton rb_list;
-    private RadioButton rb_photo;
+    private ImageView   photo;
     private RadioButton rb_circle;
     private RadioButton rb_mine;
 
@@ -37,25 +51,47 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private InformationFragment informationFragment;
     private MarketFragment_temp marketFragment;
     private MineFragment mineFragment;
-
+    private HttpListener<String> httpListener;
+    private UpdateManager updateManager;
     private FragmentTransaction ft;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
+        getVerionByVolley();
         rg_tabs = findView(R.id.rg_tabs);
         rb_information = findView(R.id.rb_information);
         rb_list = findView(R.id.rb_list);
-        rb_photo = findView(R.id.rb_photo);
+        photo = findView(R.id.rb_photo);
         rb_circle = findView(R.id.rb_circle);
         rb_mine = findView(R.id.rb_mine);
         showContentFragment(INFORMATION_FLAG, null);
         setTitle(getString(R.string.str_information));
         setBackBar(false);
+
     }
 
     @Override
     protected void initData() {
+        commDataDao=new CommDataDaoImpl(this,false,"");
+        httpListener=new HttpListener<String>() {
+            @Override
+            public void onSuccess(int what, String response) {
+                Helper helper= JsonResultUtils.helper(response);
+                String data=helper.getContentByKey("upload");
+                VersinBean bean= FastJsonHelper.getObject(data, VersinBean.class);
+                PreferenceManager manager=PreferenceManager.getInstance(MainActivity.this);
+                manager.putInt("versioncode",bean.getVersion());
+                updateManager=new UpdateManager(MainActivity.this,bean.getVersion(),bean.getVersion_introduce());
+                updateManager.getUpdateInfo();
+            }
+
+            @Override
+            public void onFail(String errMsg) {
+
+            }
+        };
+
 
     }
 
@@ -64,7 +100,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         rb_information.setOnClickListener(this);
         rb_list.setOnClickListener(this);
         rb_circle.setOnClickListener(this);
-        rb_photo.setOnClickListener(this);
+        photo.setOnClickListener(this);
         rb_mine.setOnClickListener(this);
     }
 
@@ -151,8 +187,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             rb_mine.setChecked(true);
             showContentFragment(MINE_FLAG, bundle);
         } else if (R.id.rb_photo == viewId) {
-            rb_photo.setChecked(true);
+            LalaLog.i("state","photo start");
         }
+    }
+
+    public void getVerionByVolley(){
+        VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.GETNEW, ApiContacts.GETVERSIONINFO,httpListener,new HashMap<String, String>(),false);
     }
 
     @Override

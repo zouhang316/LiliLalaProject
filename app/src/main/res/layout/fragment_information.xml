@@ -49,6 +49,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:text="高新科技"
+                    android:background="@color/article_bg"
                     android:textSize="18sp"
                     android:drawableRight="@drawable/ic_down"
                     />
@@ -59,6 +60,7 @@
                     android:layout_height="match_parent"
                     android:button="@null"
                     android:gravity="center"
+                    android:background="@color/article_bg"
                     android:text="文化创意"
                     android:textSize="18sp"
                     android:drawableRight="@drawable/ic_down"
@@ -70,6 +72,7 @@
                     android:layout_height="match_parent"
                     android:button="@null"
                     android:gravity="center"
+                    android:background="@color/article_bg"
                     android:text="我的订阅"
                     android:textSize="18sp"
                 />
@@ -150,7 +153,6 @@
             android:layout_height="675dp"
             android:focusable="false"
             android:listSelector="#00000000"/>
-
     </LinearLayout>
 
 

@@ -1,6 +1,5 @@
 package com.android.lala.base.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;

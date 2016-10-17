@@ -31,13 +31,13 @@
         <EditText
             android:id="@+id/lg_username"
             style="@style/WrapContent.WidthMatchParent"
+            android:textCursorDrawable="@null"
             android:layout_alignBottom="@+id/sridicon"
             android:layout_alignTop="@+id/sridicon"
             android:layout_toRightOf="@+id/sridicon"
             android:background="@null"
             android:hint="@string/hint_input_username"
             android:singleLine="true"
-            android:text="15576310006 "
             android:textColor="@color/white_color"
             android:textColorHint="@color/white_color"
             android:textSize="@dimen/fourty_sp" />
@@ -61,6 +61,7 @@
         <EditText
             android:id="@+id/lg_password"
             style="@style/WrapContent.WidthMatchParent"
+            android:textCursorDrawable="@null"
             android:layout_alignBottom="@+id/srpasswordicon"
             android:layout_alignTop="@+id/srpasswordicon"
             android:layout_toLeftOf="@+id/forgotpasswordtext"
@@ -69,7 +70,6 @@
             android:hint="@string/hint_pwd"
             android:inputType="textPassword"
             android:singleLine="true"
-            android:text="sunxe123456"
             android:textColor="@color/white_color"
             android:textColorHint="@color/white_color"
             android:textSize="@dimen/fourty_sp" />

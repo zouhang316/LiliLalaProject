@@ -13,7 +13,6 @@ public class ApiContacts {
     public static final String USER_LOGIN = LalaConfig.httpServer + "/app/login";
     public static final String USER_REGISTER = LalaConfig.httpServer + "/app/register";
     public static final String REGISTER_GETCODE=LalaConfig.httpServer+"/app/mobilephone/sendVerifyCodeSms";
-    public static final String REGISTER_ISEXISTENCE=LalaConfig.httpServer+"/app/finduser";
     public static final String ARTICLE=LalaConfig.httpServer+ "/app/article";
     public static final String CONTENTURL=LalaConfig.httpServer+"/static/html";
     public static final String CIRCLECONTENT=LalaConfig.httpServer+"/static/html1";
@@ -47,5 +46,7 @@ public class ApiContacts {
     public static final String USERHOME_B=LalaConfig.httpServer+"/app/circle/homepageB";
     public static final String CIRCLE_FEARTURED=LalaConfig.httpServer+"/app/circle/selection";
     public static final String UPDATE_PWD=LalaConfig.httpServer+"/app/change_password";
+    public static final String UPDATE_APK=LalaConfig.httpServer+"/static/apk/mayixinkong.apk";
+    public static final String GETVERSIONINFO=LalaConfig.httpServer+"/app/upload";
 }
 
