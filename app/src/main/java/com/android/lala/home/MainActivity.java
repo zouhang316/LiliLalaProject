@@ -19,7 +19,7 @@ import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.home.fragment.CircleFragment;
 import com.android.lala.home.fragment.InformationFragment;
-import com.android.lala.home.fragment.MarketFragment_temp;
+import com.android.lala.home.fragment.MarketFragment;
 import com.android.lala.home.fragment.MineFragment;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private CircleFragment circleFragment;
     private InformationFragment informationFragment;
-    private MarketFragment_temp marketFragment;
+    private MarketFragment marketFragment;
     private MineFragment mineFragment;
     private HttpListener<String> httpListener;
     private UpdateManager updateManager;
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case LEADERBOARD_FLAG:
                 if (marketFragment == null) {
-                    marketFragment = new MarketFragment_temp();
+                    marketFragment = new MarketFragment();
                     marketFragment.setArguments(bundle);
                     ft.add(R.id.fl_content, marketFragment);
                 } else {

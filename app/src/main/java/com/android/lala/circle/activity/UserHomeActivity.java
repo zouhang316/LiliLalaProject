@@ -36,7 +36,7 @@ import java.util.List;
  * 497239511@qq.com
  */
 public class UserHomeActivity extends BaseActivity implements View.OnClickListener{
-    private ListView listView;
+    private MyListView listView;
     private ScrollView scrollView;
     private HttpListener<String> httpListener;
     private CircleImageView head;

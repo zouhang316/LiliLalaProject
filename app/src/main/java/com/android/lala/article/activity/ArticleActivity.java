@@ -38,6 +38,9 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import me.yifeiyuan.library.PeriscopeLayout;
 
 /**
@@ -51,6 +54,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private ListView listView;
     private CircleImageView channelhead;
     private List<ArticleViewBean> articleviewlist;
+    private ArticleBean articleBean;
     private ArticleRecommendAdapter adapter;
     private String id,toppicurl;
     private Button zan;
@@ -136,7 +140,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 String article = helper.getContentByKey("article");
                 LalaLog.json("String article", article);
                 List<ArticleBean> articleBeenList = FastJsonHelper.getObjects(article, ArticleBean.class);
-                ArticleBean articleBean = articleBeenList.get(0);
+                articleBean = articleBeenList.get(0);
                 if (null != articleBean) {
                     LalaLog.i("articleBean:", articleBean.toString());
                     mWebview.loadUrl(ApiContacts.CONTENTURL + "/" + articleBean.getContent());
@@ -233,6 +237,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 //收藏点击事件
                 break;
             case  R.id.article_share:
+                showShare();
                 //分享点击事件
                 break;
         }
@@ -244,6 +249,32 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         comments.getBackground().setAlpha(180);
         fav.getBackground().setAlpha(180);
         share.getBackground().setAlpha(180);
+    }
+
+    private void showShare(){
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+        oks.setTitle(articleBean.getTitle());
+        // titleUrl是标题的网络链接，QQ和QQ空间等使用
+        oks.setTitleUrl("http://www.lelelala.net/ArticleContent/"+id);
+        // text是分享文本，所有平台都需要这个字段
+        //oks.setText("我是分享文本");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImageUrl(toppicurl);//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://www.lelelala.net/ArticleContent/"+id);
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("说点什么....");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://www.lelelala.net/ArticleContent/"+id);
+        // 启动分享GUI
+        oks.show(this);
     }
 
     @Override

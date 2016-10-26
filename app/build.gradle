@@ -15,8 +15,8 @@ android {
         applicationId "com.example.lala.activity"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.2"
         ndk {
             moduleName "lala_native"//生成的so名称
             ldLibs "log", "z", "m"
@@ -48,4 +48,13 @@ dependencies {
     compile files('libs/okhttp-2.7.0.jar')
     compile files('libs/okio-1.6.0.jar')
     compile 'com.android.support:cardview-v7:23.3.0'
+    compile files('libs/MobCommons-2016.1020.1028.jar')
+    compile files('libs/MobTools-2016.1020.1028.jar')
+    compile files('libs/ShareSDK-Core-2.7.8.jar')
+    compile files('libs/ShareSDK-QQ-2.7.8.jar')
+    compile files('libs/ShareSDK-QZone-2.7.8.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.7.8.jar')
+    compile files('libs/ShareSDK-Wechat-2.7.8.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.7.8.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.7.8.jar')
 }

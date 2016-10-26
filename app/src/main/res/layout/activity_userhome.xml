@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-   android:id="@+id/userhome_scrollview"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -39,6 +37,16 @@
             android:padding="5dp"
             android:text="+ 关注"/>
     </RelativeLayout>
+    <ScrollView
+        android:id="@+id/userhome_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,12 +159,13 @@
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
     </LinearLayout>
-    <ListView
+    <com.android.lala.view.MyListView
         android:listSelector="#00000000"
         android:id="@+id/userhome_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
-
+    </com.android.lala.view.MyListView>
     </LinearLayout>
-</ScrollView>
+
+    </ScrollView>
+</LinearLayout>

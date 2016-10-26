@@ -3,6 +3,7 @@ package com.android.lala.mine.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.lala.R;
@@ -23,9 +24,11 @@ public class UpdateNameActivity extends BaseActivity  {
     private HttpListener<String> httpListener;
     private EditText name;
     private TextView commit;
+    private ImageView back;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_updatename);
+        back=findView(R.id.back);
         name=findView(R.id.updatename);
         name.setHint(PreferenceManager.getInstance(this).getString("name",""));
         commit=findView(R.id.updatename_comit);
@@ -36,6 +39,12 @@ public class UpdateNameActivity extends BaseActivity  {
             }
         });
         setTitle("修改昵称");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -69,6 +78,7 @@ public class UpdateNameActivity extends BaseActivity  {
     protected boolean isShowToolBar() {
         return false;
     }
+
 
     private void updateName(){
         HashMap<String,String> paramers=new HashMap<>();
