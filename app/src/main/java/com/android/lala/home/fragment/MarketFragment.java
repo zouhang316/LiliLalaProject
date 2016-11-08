@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.lala.R;
@@ -47,6 +48,7 @@ public class MarketFragment extends BaseFragment {
     private ConvenientBanner banner;
     private TextView morecommodity;
     private ArrayList<Integer> pageimagelist;
+    private ScrollView scrollView;
     @Override
     public void initData(Bundle savedInstanceState) {
         getPageImages();
@@ -89,11 +91,23 @@ public class MarketFragment extends BaseFragment {
     @Override
     public void initView(View view) {
         banner= (ConvenientBanner) view.findViewById(R.id.market_viewpage);
+        scrollView= (ScrollView) view.findViewById(R.id.market_scrollview);
+        scrollView.smoothScrollTo(0,0);
         morecommodity= (TextView) view.findViewById(R.id.morecommodity);
         oldRecycleview= (RecyclerView) view.findViewById(R.id.oldrecycleview);
-        oldRecycleview.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        oldRecycleview.setLayoutManager(new GridLayoutManager(getActivity(),2){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
         newRecycleview= (RecyclerView) view.findViewById(R.id.newrecycle);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         newRecycleview.setLayoutManager(manager);
         getDataByVolley();

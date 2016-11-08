@@ -98,13 +98,19 @@ public class CircleFragment extends BaseFragment {
     public void initView(View view) {
         shareMan= (TextView) view.findViewById(R.id.shareman);
         banner= (ConvenientBanner) view.findViewById(R.id.circle_viewpage);
-        scrollView= (ScrollView) view.findViewById(R.id.circle_scrollview);
+        scrollView= (ScrollView) view.findViewById(R.id.circle_scrollview1);
         //mActionRecycleView= (RecyclerView) view.findViewById(R.id.action_recycleview);
-        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity()){
+            @Override
+            //禁止Recyclerview 滑动 与Scrollview嵌套时会造成滑动卡顿
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
         //mActionRecycleView.setLayoutManager(manager);
         mCircleRecycleview= (RecyclerView) view.findViewById(R.id.circle_recycleview);
-        mCircleRecycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mCircleRecycleview.setLayoutManager(manager);
         //scrollView.smoothScrollTo(10,10);
         initViewpage();
         getDataByVolley();
@@ -163,9 +169,9 @@ public class CircleFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        scrollView.smoothScrollTo(0,0);
+        //scrollView.smoothScrollTo(0,0);
+        scrollView.scrollTo(0,0);
         banner.startTurning(3000);
-        LalaLog.i("state","resume");
     }
 
     @Override
