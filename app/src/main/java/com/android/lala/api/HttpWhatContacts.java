@@ -22,4 +22,5 @@ public class HttpWhatContacts {
     public static final int GETUP=14;
     public static final int GETDOWN=16;
     public static final int GETHEAD=15;
+    public static final int COLLECT=17;
 }

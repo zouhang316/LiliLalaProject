@@ -43,7 +43,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     private TextView name;
     private TextView qianming;
     private TextView sharanum,likenum,fansnum;
-    private ImageView back;
+    private ImageView back,transition;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_userhome);
@@ -57,6 +57,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         fansnum=findView(R.id.fans_num);
         qianming=findView(R.id.userhome_qianming);
         back=findView(R.id.back);
+        transition=findView(R.id.transition);
         getData();
 
     }
@@ -85,6 +86,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                         final List<UserArticleBean> beanList=FastJsonHelper.getObjects(data2,UserArticleBean.class);
                         UserHomeAdapter adapter=new UserHomeAdapter(UserHomeActivity.this,beanList);
                         listView.setAdapter(adapter);
+                        transition.setVisibility(View.GONE);
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

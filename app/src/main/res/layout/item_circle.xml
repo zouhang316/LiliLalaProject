@@ -2,8 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:padding="10dp">
+    android:layout_height="222dp"
+    android:padding="8dp">
+    <TextView
+        android:id="@+id/circle_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="16sp"
+        android:textColor="@color/classf"
+        android:text="晒新物" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

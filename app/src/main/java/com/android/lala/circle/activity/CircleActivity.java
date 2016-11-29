@@ -3,6 +3,7 @@ package com.android.lala.circle.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -31,7 +32,6 @@ public class CircleActivity extends BaseActivity implements View.OnClickListener
     private RadioButton featured;
 
     private Bundle bundle;
-
     private TextView indicator_new,indicator_hot,indicator_featured;
 
     @Override

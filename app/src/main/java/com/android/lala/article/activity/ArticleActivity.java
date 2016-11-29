@@ -1,6 +1,7 @@
 package com.android.lala.article.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,7 +26,9 @@ import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
+import com.android.lala.login.LoginActivity;
 import com.android.lala.utils.LalaLog;
+import com.android.lala.utils.PreferenceManager;
 import com.android.lala.view.CircleImageView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,6 +38,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +67,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private Button zan;
     private PeriscopeLayout periscopeLayout;
     private RelativeLayout bottomMenu;
+    private ImageView transition;
     float x1 = 0;
     float x2 = 0;
     float y1 = 0;
@@ -71,6 +79,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_article);
         title = findView(R.id.acricle_title);
         article_class = findView(R.id.article_class);
+        transition=findView(R.id.transition);
         channelname = findView(R.id.article_channelname);
         likenum = findView(R.id.article_likenum);
         toppic = findView(R.id.article_toppic);
@@ -135,28 +144,31 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         this.httpListener = new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
-
-                Helper helper = JsonResultUtils.helper(response);
-                String article = helper.getContentByKey("article");
-                LalaLog.json("String article", article);
-                List<ArticleBean> articleBeenList = FastJsonHelper.getObjects(article, ArticleBean.class);
-                articleBean = articleBeenList.get(0);
-                if (null != articleBean) {
-                    LalaLog.i("articleBean:", articleBean.toString());
-                    mWebview.loadUrl(ApiContacts.CONTENTURL + "/" + articleBean.getContent());
-                    Picasso.with(ArticleActivity.this).load(toppicurl).into(toppic);
-                    Picasso.with(ArticleActivity.this).load(articleBean.getChannel_ico()).into(channel_icon);
-                    Picasso.with(ArticleActivity.this).load(articleBean.getChannel_ico()).into(channelhead);
-                    title.setText(articleBean.getTitle());
-                    article_class.setText(articleBean.getSort());
-                    channelname.setText(articleBean.getChannels());
-                    date.setText(articleBean.getDatetime());
-                    likenum.setText(articleBean.getSubscription());
-                    channelinfo.setText("本文由  " + articleBean.getChannels() + "  发布，已有 " + articleBean.getArticle_num() + " 篇文章");
-                    getRecommedData(articleBean.getSort());
+                if (what==HttpWhatContacts.GETARTICLE){
+                    //获取文章回调接口
+                    Helper helper = JsonResultUtils.helper(response);
+                    String article = helper.getContentByKey("article");
+                    LalaLog.json("String article", article);
+                    List<ArticleBean> articleBeenList = FastJsonHelper.getObjects(article, ArticleBean.class);
+                    articleBean = articleBeenList.get(0);
+                    if (null != articleBean) {
+                        LalaLog.i("articleBean:", articleBean.toString());
+                        mWebview.loadUrl(ApiContacts.CONTENTURL + "/" + articleBean.getContent());
+                        Picasso.with(ArticleActivity.this).load(toppicurl).into(toppic);
+                        Picasso.with(ArticleActivity.this).load(articleBean.getChannel_ico()).into(channel_icon);
+                        Picasso.with(ArticleActivity.this).load(articleBean.getChannel_ico()).into(channelhead);
+                        title.setText(articleBean.getTitle());
+                        article_class.setText(articleBean.getSort());
+                        channelname.setText(articleBean.getChannels());
+                        date.setText(articleBean.getDatetime());
+                        likenum.setText(articleBean.getSubscription());
+                        channelinfo.setText("本文由  " + articleBean.getChannels() + "  发布，已有 " + articleBean.getArticle_num() + " 篇文章");
+                        getRecommedData(articleBean.getSort());
+                        transition.setVisibility(View.GONE);
+                    }
+                }else if(what==HttpWhatContacts.COLLECT){
+                    showCollectResult(response);
                 }
-
-
             }
 
             @Override
@@ -175,7 +187,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         HashMap<String, String> paramers = new HashMap<>();
         paramers.put("id", id);
         LalaLog.i("paramersid",id);
-        VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.GETARTICLE, ApiContacts.ARTICLE, httpListener, paramers, true);
+        VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.GETARTICLE, ApiContacts.ARTICLE, httpListener, paramers, false);
     }
 
     private void getRecommedData(final String sort) {
@@ -208,6 +220,45 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         queue.add(request);
     }
 
+    public void dianZan(){
+        HashMap<String,String> paramers =new HashMap<>();
+        paramers.put("id",id);
+        if(PreferenceManager.getInstance(this).getBoolean("islogin",false)){
+                paramers.put("userId",PreferenceManager.getInstance(this).getString("id",""));
+        }
+        VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETDOWN,ApiContacts.ARTICLERE_ZAN,httpListener,paramers,false);
+        LalaLog.i("paramers",paramers.toString());
+    }
+
+    public void collectArticle (){
+        PreferenceManager preferenceManager=PreferenceManager.getInstance(this);
+        if(!preferenceManager.getBoolean("islogin",false)){
+            showToastMsg("请先登录再收藏噢");
+            Intent intent=new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+        HashMap<String,String> parmaers=new HashMap<>();
+        parmaers.put("id",id);
+        parmaers.put("userId",preferenceManager.getString("id",""));
+        VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.COLLECT,ApiContacts.COLLECT,httpListener,parmaers,false);
+
+    }
+
+    public void showCollectResult(String response){
+        try {
+            JSONObject jsonObject=new JSONObject(response);
+            String state=jsonObject.getString("collect");
+            if (state.equals("success")){
+                showToastMsg("收藏成功");
+            }else {
+                showToastMsg("您已经收藏过此文章");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void initListener() {
 
@@ -224,6 +275,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()){
             case R.id.article_zan:
                 periscopeLayout.addHeart();
+                dianZan();
                 break;
             case R.id.article_comment:
                 Intent intent=new Intent(getApplicationContext(),ArticleCommentActivity.class);
@@ -235,6 +287,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.article_fav:
                 //收藏点击事件
+                collectArticle();
                 break;
             case  R.id.article_share:
                 showShare();
@@ -286,6 +339,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     protected void onDestroy() {
         super.onDestroy();
         mWebview.stopLoading();
+        LalaLog.i("state","destroy");
     }
 
     @Override
@@ -293,5 +347,15 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
         return super.onTouchEvent(event);
 
+    }
+
+    @Override
+    protected void onPause() {
+//        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.HONEYCOMB){
+//            mWebview.onPause();//暂停视频
+//        }
+        mWebview.reload();//暂停音乐
+        LalaLog.i("state","pause");
+        super.onPause();
     }
 }

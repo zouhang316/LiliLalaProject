@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import com.android.lala.market.activity.MoreCommodityActivity;
 import com.android.lala.market.adapter.MarketNewAdapter;
 import com.android.lala.market.adapter.MarketOldAdapter;
 import com.android.lala.market.bean.MarketBean;
+import com.android.lala.utils.LalaLog;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 
@@ -37,7 +39,7 @@ import java.util.List;
  * Created by ZH on 2016/9/22.
  * 497239511@qq.com
  */
-public class MarketFragment extends BaseFragment {
+public class MarketFragment extends BaseFragment implements View.OnClickListener{
     private List<MarketBean>newBeanList;
     private ArrayList<MarketBean> oldBeanList;
     private HttpListener<String> httpListener;
@@ -46,9 +48,11 @@ public class MarketFragment extends BaseFragment {
     private RecyclerView oldRecycleview;
     private RecyclerView newRecycleview;
     private ConvenientBanner banner;
+    private ImageView tiyanguan,zhongchou,haodianyouli,qiandao;
     private TextView morecommodity;
     private ArrayList<Integer> pageimagelist;
     private ScrollView scrollView;
+    private ImageView transition;
     @Override
     public void initData(Bundle savedInstanceState) {
         getPageImages();
@@ -61,36 +65,44 @@ public class MarketFragment extends BaseFragment {
                         Helper helper= JsonResultUtils.helper(response);
                         String data=helper.getContentByKey("old");
                         oldBeanList= (ArrayList<MarketBean>) FastJsonHelper.getObjects(data,MarketBean.class);
-                        List<MarketBean> pageList=new ArrayList<>();
-                        for (int i = 0; i < 8; i++) {
-                            pageList.add(oldBeanList.get(i));
+                        if(oldBeanList.size()!=0){
+                            LalaLog.i("size",oldBeanList.size()+"");
+                            List<MarketBean> pageList=new ArrayList<>();
+                            for (int i = 0; i < 8; i++) {
+                                pageList.add(oldBeanList.get(i));
+                            }
+                            oldAdapter=new MarketOldAdapter(pageList,getContext());
+                            oldRecycleview.setAdapter(oldAdapter);
                         }
-                        oldAdapter=new MarketOldAdapter(pageList,getContext());
-                        oldRecycleview.setAdapter(oldAdapter);
                         break;
                     case HttpWhatContacts.GETNEW:
                         Helper helper2= JsonResultUtils.helper(response);
                         String data2=helper2.getContentByKey("new");
                         newBeanList= FastJsonHelper.getObjects(data2,MarketBean.class);
-                        newAdapter=new MarketNewAdapter(newBeanList,getContext());
-                        newRecycleview.setAdapter(newAdapter);
+                        if (newBeanList!=null){
+                            newAdapter=new MarketNewAdapter(newBeanList,getContext());
+                            transition.setVisibility(View.GONE);
+                            newRecycleview.setAdapter(newAdapter);
+                        }
                         break;
                 }
-
             }
 
             @Override
             public void onFail(String errMsg) {
-
+                showMessageDialog("提示",errMsg);
             }
         };
-
-
     }
 
     @Override
     public void initView(View view) {
+        transition= (ImageView) view.findViewById(R.id.market_transition);
         banner= (ConvenientBanner) view.findViewById(R.id.market_viewpage);
+        tiyanguan= (ImageView) view.findViewById(R.id.tiyanguan);
+        zhongchou= (ImageView) view.findViewById(R.id.zhongchou);
+        haodianyouli= (ImageView) view.findViewById(R.id.haodianyouli);
+        qiandao= (ImageView) view.findViewById(R.id.qiandao);
         scrollView= (ScrollView) view.findViewById(R.id.market_scrollview);
         scrollView.smoothScrollTo(0,0);
         morecommodity= (TextView) view.findViewById(R.id.morecommodity);
@@ -102,6 +114,7 @@ public class MarketFragment extends BaseFragment {
             }
         });
         newRecycleview= (RecyclerView) view.findViewById(R.id.newrecycle);
+        newRecycleview.setFocusable(false);
         LinearLayoutManager manager=new LinearLayoutManager(getActivity()){
             @Override
             public boolean canScrollVertically() {
@@ -125,10 +138,17 @@ public class MarketFragment extends BaseFragment {
                 if (v.getId()==R.id.morecommodity){
                     Intent intent=new Intent(getActivity(), MoreCommodityActivity.class);
                     intent.putParcelableArrayListExtra("data",oldBeanList);
+                    if (oldBeanList==null){
+                        return;
+                    }
                     startActivity(intent);
                 }
             }
         });
+        tiyanguan.setOnClickListener(this);
+        zhongchou.setOnClickListener(this);
+        haodianyouli.setOnClickListener(this);
+        qiandao.setOnClickListener(this);
     }
 
     public void getDataByVolley(){
@@ -161,5 +181,12 @@ public class MarketFragment extends BaseFragment {
     public void onPause() {
         super.onPause();
         banner.stopTurning();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.tiyanguan||v.getId()==R.id.zhongchou||v.getId()==R.id.haodianyouli||v.getId()==R.id.qiandao){
+            showToast("该功能马上上线，敬请期待");
+        }
     }
 }

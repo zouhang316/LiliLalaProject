@@ -37,6 +37,11 @@
             android:padding="5dp"
             android:text="+ 关注"/>
     </RelativeLayout>
+    <ImageView
+        android:id="@+id/transition"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/transition"/>
     <ScrollView
         android:id="@+id/userhome_scrollview"
         android:layout_width="match_parent"

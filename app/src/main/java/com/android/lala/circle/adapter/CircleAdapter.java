@@ -40,6 +40,7 @@ public class CircleAdapter extends BaseRecycleAdapter {
     protected BaseRecycleViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.item_circle,parent,false);
         final ImageView background= (ImageView) view.findViewById(R.id.circle_background);
+        final TextView  sort= (TextView) view.findViewById(R.id.circle_sort);
         ImageView alphabg= (ImageView) view.findViewById(R.id.alpha_bg);
         alphabg.getBackground().setAlpha(50);
         BaseRecycleViewHolder holder=new BaseRecycleViewHolder(view) {
@@ -50,20 +51,20 @@ public class CircleAdapter extends BaseRecycleAdapter {
                     case 0:
                         //background.setBackgroundResource(R.mipmap.shaixinwu);
                         background.setImageResource(R.mipmap.shaixinwu);
+                        sort.setText("晒新物");
                         break;
                     case 1:
                        // background.setBackgroundResource(R.mipmap.wantbuy);
                         background.setImageResource(R.mipmap.wantbuy);
+                        sort.setText("我想买");
                         break;
                     case 2:
                        // background.setBackgroundResource(R.mipmap.aifaxian);
                         background.setImageResource(R.mipmap.aifaxian);
+                        sort.setText("爱发现");
                         break;
                 }
-
-
             }
-
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent=new Intent(context, CircleActivity.class);

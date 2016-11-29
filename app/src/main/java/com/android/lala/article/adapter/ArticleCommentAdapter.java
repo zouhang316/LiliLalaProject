@@ -34,7 +34,6 @@ public class ArticleCommentAdapter extends BaseListViewAdapter<ArticleCommentBea
         holder.setText(R.id.article_comment_data,articleCommentBean.getDatetime());
         holder.setText(R.id.article_comment_content,articleCommentBean.getContent());
         holder.setImageUrl(R.id.article_comment_head,articleCommentBean.getPhoto());
-        LalaLog.i("photo", articleCommentBean.getPhoto());
 
     }
 }

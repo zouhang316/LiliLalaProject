@@ -45,6 +45,7 @@ public class CircleArticleActivity extends BaseActivity implements View.OnClickL
     private WebView content;
     private ImageView background;
     private String userID;
+    private ImageView transition;
     @Override
     protected void initData() {
         //TODO 缺少评论数据
@@ -62,6 +63,7 @@ public class CircleArticleActivity extends BaseActivity implements View.OnClickL
                 Picasso.with(CircleArticleActivity.this).load(bean.getBackground()).into(background);
                 Picasso.with(CircleArticleActivity.this).load(bean.getPhoto()).into(headImage);
                 content.loadUrl(ApiContacts.CIRCLECONTENT+"/"+bean.getContent());
+                transition.setVisibility(View.GONE);
             }
 
             @Override
@@ -84,6 +86,7 @@ public class CircleArticleActivity extends BaseActivity implements View.OnClickL
         back=findView(R.id.back);
         content=findView(R.id.circlearticle_author_webview);
         background=findView(R.id.circlearticle_author_background);
+        transition=findView(R.id.circle_transition);
         //TODO 评论功能待接口
 //        List<UserBean> userBeenlist=new ArrayList<>();
 //        for (int i = 0; i <5 ; i++) {

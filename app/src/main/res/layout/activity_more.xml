@@ -69,11 +69,24 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/nomarl_title_color"
-            android:text="当前版本"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/nomarl_title_color"
+                android:text="当前版本"/>
+            <TextView
+                android:id="@+id/visonname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/nomarl_title_color"
+                android:textSize="11sp"
+                android:layout_marginLeft="300dp" />
+
+        </FrameLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -87,17 +100,35 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/nomarl_title_color"
             android:text="联系我们"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/nomarl_title_color"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:textSize="11sp"
+                    android:text="@string/feenback_text2"/>
+            </RelativeLayout>
+
+        </FrameLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="10dp"
             android:background="@color/nomarl_text_color"/>
     </LinearLayout>
+    <!--
     <LinearLayout
         android:id="@+id/goodcomment"
         android:layout_width="match_parent"
@@ -116,6 +147,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/nomarl_text_color"/>
     </LinearLayout>
+    -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="15dp"

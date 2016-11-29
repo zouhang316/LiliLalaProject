@@ -106,16 +106,16 @@
             android:textColor="@color/white_color"
             android:textSize="@dimen/ten_sp" />
 
-        <Button
+        <TextView
             android:id="@+id/btn_relogin"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:gravity="center"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/btn_next"
             android:layout_marginEnd="@dimen/ten_dp"
             android:layout_marginStart="@dimen/ten_dp"
             android:layout_marginTop="@dimen/ten_dp"
-            android:background="@drawable/btn_comm_next"
             android:text="@string/str_gologin"
             android:textColor="@color/nomarl_text_color"
             android:textSize="@dimen/ten_sp" />

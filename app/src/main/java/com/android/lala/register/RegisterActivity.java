@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
@@ -34,7 +35,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText et_code;
     private TimeButton btn_getcode;
     private Button btn_next;
-    private Button btn_relogin;
+    private TextView btn_relogin;
     private String mPhoneNumber,mCode;
     private HttpListener<String> httpListener;
     private List<Map<String,String >> codelist;
@@ -48,7 +49,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         btn_getcode = findView(R.id.btn_getcode);
         btn_next = findView(R.id.btn_next);
         btn_relogin = findView(R.id.btn_relogin);
-
     }
 
 
@@ -79,7 +79,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
-    protected void initListener() {        et_phone.addTextChangedListener(new TextWatcher() {
+    protected void initListener() {
+        et_phone.addTextChangedListener(new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -153,6 +154,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
     //点击下一步并判断验证码和手机是否一致
     public void judgeCode(){
+        if (codelist==null){
+            showToastMsg("请填写正确验证码！");
+            return;
+        }
         String mycode=codelist.get(0).get("verifyCode");
         String myphone=codelist.get(0).get("mobilephone");
         if (!mycode.equals(mCode)){
@@ -166,6 +171,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             Intent intent=new Intent(this,SetingPwdActivity.class);
             intent.putExtra("name",myphone);
             startActivity(intent);
+            finish();
 
 
     }

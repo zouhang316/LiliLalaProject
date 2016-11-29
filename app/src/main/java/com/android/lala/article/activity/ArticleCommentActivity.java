@@ -30,7 +30,7 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
     private ListView mListview;
     private HttpListener<String> httpListener;
     private PreferenceManager preferenceManager;
-    private String UserID;
+    private String userID;
     private Button sendComment;
     private String id;
     private EditText mContent;
@@ -38,6 +38,8 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initData() {
+        preferenceManager=PreferenceManager.getInstance(this);
+        userID =preferenceManager.getString("id","");
         id=getIntent().getStringExtra("id");
         commDataDao=new CommDataDaoImpl(this,false,"comment.json");
         httpListener=new HttpListener<String>() {
@@ -61,6 +63,7 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
                     List<ArticleCommentBean> commentBeanList= FastJsonHelper.getObjects(comment,ArticleCommentBean.class);
                     adapter=new ArticleCommentAdapter(getApplicationContext(),commentBeanList);
                     mListview.setAdapter(adapter);
+                    mListview.setSelection(View.FOCUS_DOWN);
                     setTitle(commentBeanList.size()+"条评论");
                 }
             }
@@ -70,8 +73,7 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
 
             }
         };
-        preferenceManager=PreferenceManager.getInstance(this);
-        UserID=preferenceManager.getString("id","");
+
         firstGetComment();
 
     }
@@ -87,13 +89,14 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
     public void firstGetComment(){
         HashMap<String,String> paramers =new HashMap<>();
         paramers.put("id",id);
-        paramers.put("userId",UserID);
         VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.GETCOMMENT, ApiContacts.ARTICLE_GETCOMMENT,httpListener,paramers,false);
     }
     public void sendComment(){
         HashMap<String,String> paramers =new HashMap<>();
         paramers.put("articleId",id);
-        paramers.put("userId",UserID);
+        if(preferenceManager.getBoolean("islogin",false)){
+            paramers.put("userId", userID);
+        }
         paramers.put("content",mContent.getText().toString() );
         VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.POSTCOMMENT, ApiContacts.ARTICLE_POSTCOMMENT,httpListener,paramers,false);
     }
@@ -110,16 +113,18 @@ public class ArticleCommentActivity extends BaseActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.btn_article_sendcomment){
-            if (!preferenceManager.getBoolean("islogin",false)){
-                Intent intent=new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                return;
-            }
                 if (mContent.getText().toString().equals("")){
                     showToastMsg("评论内容不能为空");
                     return;
                 }
             sendComment();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        LalaLog.i("id", userID);
     }
 }

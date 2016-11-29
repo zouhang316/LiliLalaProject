@@ -8,7 +8,7 @@
     <color name="white_color">@android:color/white</color>
     <color name="forget_pwd_color">#FF7043</color>
     <color name="nomarl_grey_bg_color">#bbbbbb</color>
-    <color name="defult_image_bg">#bbbbbb</color>
+    <color name="defult_image_bg">#EDEDED</color>
     <color name="view_line_color">#bbbbbb</color>
     <color name="tab_selected_bg">#C4E1E1</color>
     <color name="black">#000000</color>
@@ -19,4 +19,5 @@
     <color name="nomarl_divider">#F0F0F2</color>
     <color name="nomarl_title_color">#181818</color>
     <color name="article_bg">#FAFAFA</color>
+    <color name="black_line">#4F4F4F</color>
 </resources>

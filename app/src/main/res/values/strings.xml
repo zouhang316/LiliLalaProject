@@ -14,7 +14,7 @@
     <string name="network_author_error">身份验证未通过，请稍后重试!</string>
     <string name="network_parser_error">解析数据错误，请稍后重试!</string>
     <string name="network_timeout_error">网络连接超时，请稍后重试！</string>
-    <string name="network_connect_error">无法连接服务器,请检查网络地址是否正确!</string>
+    <string name="network_connect_error">无法连接服务器,请稍后重试!</string>
     <string name="network_nomarl_error">网络连接异常，请检查网络!</string>
     <string name="network_red_error">重定向错误，请稍后重试!</string>
     <string name="hint_phone">输入手机号</string>

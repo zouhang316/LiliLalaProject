@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.lala.R;
@@ -18,6 +21,7 @@ import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
+import com.android.lala.login.LoginActivity;
 import com.android.lala.login.bean.UserBean;
 import com.android.lala.market.adapter.BuyCommentAdaper;
 import com.android.lala.market.adapter.BuyHeadAdapter;
@@ -26,6 +30,7 @@ import com.android.lala.market.bean.CommentBean;
 import com.android.lala.market.bean.CommodityBean;
 import com.android.lala.market.bean.MarketBean;
 import com.android.lala.utils.LalaLog;
+import com.android.lala.utils.PreferenceManager;
 import com.android.lala.view.MyListView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -38,7 +43,7 @@ import java.util.Map;
  * Created by ZH on 2016/9/23.
  * 497239511@qq.com
  */
-public class BuyActivity extends BaseActivity{
+public class BuyActivity extends BaseActivity implements View.OnClickListener{
     private HttpListener<String> httpListener;
     private ConvenientBanner banner;
     private List<String> networkImages;
@@ -52,6 +57,9 @@ public class BuyActivity extends BaseActivity{
     private RecyclerView recmmendRecycleview;
     private RecyclerView headRecycleview;
     private MyListView commentListview;
+    private ImageView transition;
+    private Button buy;
+    private String links;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
@@ -59,8 +67,10 @@ public class BuyActivity extends BaseActivity{
         banner=findView(R.id.buy_viewpage);
         mTitle=findView(R.id.market_buy_title);
         price=findView(R.id.market_buy_price);
+        transition=findView(R.id.transition_buyactivity);
         introduction=findView(R.id.market_buy_jianjie);
         commentListview=findView(R.id.market_commentview);
+        commentListview.setFocusable(false);
         lunxinnum=findView(R.id.market_buy_lunxinnum);
         listnum=findView(R.id.buy_listnum);
         star1=findView(R.id.xindu1);
@@ -68,12 +78,14 @@ public class BuyActivity extends BaseActivity{
         star3=findView(R.id.xindu3);
         star4=findView(R.id.xindu4);
         star5=findView(R.id.xindu5);
+        buy=findView(R.id.buyactivity_buy);
         recmmendRecycleview=findView(R.id.market_buy_recommend);
+        recmmendRecycleview.setFocusable(false);
         recmmendRecycleview.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         headRecycleview=findView(R.id.market_userhead_recycle);
+        headRecycleview.setFocusable(false);
         headRecycleview.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         getDataByVolley();
-
     }
 
     @Override
@@ -98,7 +110,9 @@ public class BuyActivity extends BaseActivity{
                         networkImages.add(bean.getShowcase_img1());
                         networkImages.add(bean.getShowcase_img2());
                         networkImages.add(bean.getShowcase_img3());
+                        links=bean.getLinks();
                         initViewpage();
+                        transition.setVisibility(View.GONE);
                         break;
                     case HttpWhatContacts.GETARTICLERECOMMEND :
                         Helper recommendHelper= JsonResultUtils.helper(response);
@@ -112,6 +126,7 @@ public class BuyActivity extends BaseActivity{
                         String headData=headHelper.getContentByKey("inventory");
                         List<Map<String,String>> maps=FastJsonHelper.getKeyMapsList(headData);
                         listnum.setText(maps.size()+"人加入了购买清单");
+                        LalaLog.i("qingdan",maps.toString());
                         BuyHeadAdapter headAdapter=new BuyHeadAdapter(BuyActivity.this,maps);
                         headRecycleview.setAdapter(headAdapter);
                         break;
@@ -136,6 +151,7 @@ public class BuyActivity extends BaseActivity{
 
     @Override
     protected void initListener() {
+        buy.setOnClickListener(this);
 
     }
 
@@ -165,7 +181,7 @@ public class BuyActivity extends BaseActivity{
         VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.GETCONTENT, ApiContacts.BUY_GETCONTENT,httpListener,paramers,false);
         VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETHEAD,ApiContacts.BUY_GETHEAD,httpListener,paramers,false);
         VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETARTICLERECOMMEND,ApiContacts.BUY_GETRECOMMEND,httpListener,paramers,false);
-        VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETCOMMENT,ApiContacts.BUY_GETCOMMENT,httpListener,paramers,true);
+        VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETCOMMENT,ApiContacts.BUY_GETCOMMENT,httpListener,paramers,false);
     }
     public void showStars(int level){
         switch (level) {
@@ -197,6 +213,23 @@ public class BuyActivity extends BaseActivity{
                 star5.setImageResource(R.drawable.ic_star_full);
             default:
                 break;
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.buyactivity_buy){
+            if (PreferenceManager.getInstance(this).getBoolean("islogin",false)){
+                Intent intent=new Intent(this,WebBuyActivity.class);
+                intent.putExtra("links",links);
+                startActivity(intent);
+            }else {
+                showToastMsg("请先登录");
+                Intent intent=new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }
+
         }
 
     }

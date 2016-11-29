@@ -26,7 +26,7 @@ import java.util.Map;
  * @author sxshi
  */
 public class RequestFactory {
-    private static final int DEFAULT_TIME_OUT = 20 * 1000;
+    private static final int DEFAULT_TIME_OUT = 5000;
     private static volatile RequestFactory mFactory;
     private Context mContext;
 

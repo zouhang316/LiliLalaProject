@@ -14,9 +14,11 @@ public class ApiContacts {
     public static final String USER_REGISTER = LalaConfig.httpServer + "/app/register";
     public static final String REGISTER_GETCODE=LalaConfig.httpServer+"/app/mobilephone/sendVerifyCodeSms";
     public static final String ARTICLE=LalaConfig.httpServer+ "/app/article";
+    public static final String ARTICLE_GETMORE=LalaConfig.httpServer+ "/app/technology/screen/ajax";
     public static final String CONTENTURL=LalaConfig.httpServer+"/static/html";
     public static final String CIRCLECONTENT=LalaConfig.httpServer+"/static/html1";
     public static final String ARTICLERE_COM =LalaConfig.httpServer+"/app/article/channels";
+    public static final String ARTICLERE_ZAN=LalaConfig.httpServer+"/app/articleContent/praise";
     public static final String INFORMATION_ARTICLE_TECHNALOGY = LalaConfig.httpServer+"/app/technology";
     public static final String INFORMATION_ARTICLE_CULTURE=LalaConfig.httpServer+"/app/CurturalInnovation";
     public static final String INFORMATION_CHANNEL =LalaConfig.httpServer+"/app/recommend/channels";
@@ -48,5 +50,12 @@ public class ApiContacts {
     public static final String UPDATE_PWD=LalaConfig.httpServer+"/app/change_password";
     public static final String UPDATE_APK=LalaConfig.httpServer+"/static/apk/mayixinkong.apk";
     public static final String GETVERSIONINFO=LalaConfig.httpServer+"/app/upload";
+    public static final String GETMAC=LalaConfig.httpServer+"/app/mac";
+    public static final String COLLECT=LalaConfig.httpServer+"/app/articleContent/collect";
+    public static final String GETCOLLECT=LalaConfig.httpServer+"/app/collect/article";
+    public static final String APKDOWNLOAD="http://a.app.qq.com/o/simple.jsp?pkgname=com.example.lala.activity#opened";
+    public static final String APKICON=LalaConfig.httpServer+"/static/upload/512px.png";
+    public static final String GETZC=LalaConfig.httpServer+"/app/reptile_data";
+    public static final String GETBANNERIMG=LalaConfig.httpServer+"/app/img_data";
 }
 

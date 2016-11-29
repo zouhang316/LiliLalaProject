@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
@@ -31,6 +32,7 @@ public class HotFragment extends BaseFragment {
     private HttpListener<String> httpListener;
     private RecyclerView recyclerView;
     private String sort;
+    private ImageView transition;
     @Override
     public void initData(Bundle savedInstanceState) {
         Bundle bundle=getArguments();
@@ -46,12 +48,12 @@ public class HotFragment extends BaseFragment {
                 LalaLog.i("size",circleBeen.size()+"");
                 NewAdapter adapter=new NewAdapter(getActivity(),circleBeen);
                 recyclerView.setAdapter(adapter);
-
+                transition.setVisibility(View.GONE);
             }
 
             @Override
             public void onFail(String errMsg) {
-
+                showMessageDialog("提示",errMsg);
             }
         };
 
@@ -61,6 +63,7 @@ public class HotFragment extends BaseFragment {
     public void initView(View view) {
         recyclerView= (RecyclerView) view.findViewById(R.id.newest_recycleview);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        transition= (ImageView) view.findViewById(R.id.circle_transition);
         List<String> mlist=new ArrayList<>();
         for (int i = 0; i <10 ; i++) {
             mlist.add(i+"");

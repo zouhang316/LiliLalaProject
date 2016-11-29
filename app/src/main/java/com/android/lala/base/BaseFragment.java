@@ -1,15 +1,19 @@
 package com.android.lala.base;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.lala.R;
 import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.http.VolleyHelper;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
@@ -47,12 +51,87 @@ public abstract class BaseFragment extends Fragment {
 //        mListener = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(getActivity());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(getActivity());
+    }
+
+    /**
+     * Show message dialog.
+     *
+     * @param title   title.
+     * @param message message.
+     */
+    public void showMessageDialog(int title, int message) {
+        showMessageDialog(getText(title), getText(message));
+    }
+
+    /**
+     * Show message dialog.
+     *
+     * @param title   title.
+     * @param message message.
+     */
+    public void showMessageDialog(int title, CharSequence message) {
+        showMessageDialog(getText(title), message);
+    }
+
+    /**
+     * Show message dialog.
+     *
+     * @param title   title.
+     * @param message message.
+     */
+    public void showMessageDialog(CharSequence title, int message) {
+        showMessageDialog(title, getText(message));
+    }
+
+    /**
+     * Show message dialog.
+     *
+     * @param title   title.
+     * @param message message.
+     */
+    public void showMessageDialog(CharSequence title, CharSequence message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    /***
+     * Show message dialog with custom DialogInterface.OnClickListener
+     *
+     * @param title
+     * @param message
+     * @param okListener
+     */
+    public void showMessageDialog(CharSequence title, CharSequence message, DialogInterface.OnClickListener okListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(R.string.dialog_ok, okListener);
+        builder.show();
+    }
+
     public void showToast(String message){
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
     }
 
     public void initPopwind(LayoutInflater inflater){
-
     }
 
     /***

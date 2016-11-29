@@ -1,7 +1,11 @@
 package com.android.lala.home;
 
+import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,14 +25,18 @@ import com.android.lala.home.fragment.CircleFragment;
 import com.android.lala.home.fragment.InformationFragment;
 import com.android.lala.home.fragment.MarketFragment;
 import com.android.lala.home.fragment.MineFragment;
+import com.android.lala.home.fragment.NewInformationFragment;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
+import com.android.lala.market.bean.MacBean;
 import com.android.lala.utils.ExitAppliation;
 import com.android.lala.utils.LalaLog;
 import com.android.lala.utils.PreferenceManager;
 import com.android.lala.utils.UpdateManager;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -49,39 +57,58 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private InformationFragment informationFragment;
     private MarketFragment marketFragment;
     private MineFragment mineFragment;
+    private NewInformationFragment newInformationFragment;
     private HttpListener<String> httpListener;
     private UpdateManager updateManager;
     private FragmentTransaction ft;
+    private String macAddress;
 
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
+        //overridePendingTransition(R.anim.left_out,R.anim.right_in);
+        checkReLogin();
         getVerionByVolley();
         rg_tabs = findView(R.id.rg_tabs);
         rb_information = findView(R.id.rb_information);
         rb_list = findView(R.id.rb_list);
-        photo = findView(R.id.rb_photo);
+        //photo = findView(R.id.rb_photo);
         rb_circle = findView(R.id.rb_circle);
         rb_mine = findView(R.id.rb_mine);
         showContentFragment(INFORMATION_FLAG, null);
         setTitle(getString(R.string.str_information));
         setBackBar(false);
-
     }
 
     @Override
     protected void initData() {
+        macAddress=getMacAddress();
         commDataDao = new CommDataDaoImpl(this, false, "");
         httpListener = new HttpListener<String>() {
             @Override
             public void onSuccess(int what, String response) {
-                Helper helper = JsonResultUtils.helper(response);
-                String data = helper.getContentByKey("upload");
-                VersinBean bean = FastJsonHelper.getObject(data, VersinBean.class);
-                PreferenceManager manager = PreferenceManager.getInstance(MainActivity.this);
-                manager.putInt("versioncode", bean.getVersion());
-                updateManager = new UpdateManager(MainActivity.this, bean.getVersion(), bean.getVersion_introduce());
-                updateManager.getUpdateInfo();
+                switch (what){
+                    case HttpWhatContacts.GETNEW :
+                        //检查版本
+                        Helper helper = JsonResultUtils.helper(response);
+                        String data = helper.getContentByKey("upload");
+                        VersinBean bean = FastJsonHelper.getObject(data, VersinBean.class);
+                        PreferenceManager manager = PreferenceManager.getInstance(MainActivity.this);
+                        manager.putInt("versioncode", bean.getVersion());
+                        updateManager = new UpdateManager(MainActivity.this, bean.getVersion(), bean.getVersion_introduce());
+                        updateManager.getUpdateInfo();
+                        break;
+                    case HttpWhatContacts.GETUP :
+                        //判断是否多设备登录
+                        Helper helper2=JsonResultUtils.helper(response);
+                        String data2=helper2.getContentByKey("mac");
+                        MacBean macBean=FastJsonHelper.getObject(data2, MacBean.class);
+                        if (!macBean.getMac().equals(macAddress)){
+                            PreferenceManager.getInstance(MainActivity.this).putBoolean("islogin",false);
+                            showMessageDialog("提示","您的账号在其他设备登录，如不是您本人操作请更换密码");
+                        }
+                        break;
+                }
             }
 
             @Override
@@ -97,7 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         rb_information.setOnClickListener(this);
         rb_list.setOnClickListener(this);
         rb_circle.setOnClickListener(this);
-        photo.setOnClickListener(this);
+        //photo.setOnClickListener(this);
         rb_mine.setOnClickListener(this);
     }
 
@@ -118,12 +145,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 break;
             case INFORMATION_FLAG:
-                if (informationFragment == null) {
-                    informationFragment = new InformationFragment();
-                    informationFragment.setArguments(bundle);
-                    ft.add(R.id.fl_content, informationFragment);
+                if (newInformationFragment == null) {
+                    newInformationFragment = new NewInformationFragment();
+                    newInformationFragment.setArguments(bundle);
+                    ft.add(R.id.fl_content, newInformationFragment);
                 } else {
-                    ft.show(informationFragment);
+                    ft.show(newInformationFragment);
                 }
                 break;
             case LEADERBOARD_FLAG:
@@ -152,8 +179,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (circleFragment != null) {
             ft.hide(circleFragment);
         }
-        if (informationFragment != null) {
-            ft.hide(informationFragment);
+        if (newInformationFragment != null) {
+            ft.hide(newInformationFragment);
         }
         if (marketFragment != null) {
             ft.hide(marketFragment);
@@ -183,8 +210,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             setTitle(getString(R.string.str_mine));
             rb_mine.setChecked(true);
             showContentFragment(MINE_FLAG, bundle);
-        } else if (R.id.rb_photo == viewId) {
-            LalaLog.i("state", "photo start");
         }
     }
 
@@ -195,6 +220,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected boolean isShowToolBar() {
         return false;
+    }
+
+    private String getMacAddress(){
+        String result = "";
+        WifiManager wifiManager = (WifiManager) getSystemService(this.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        result = wifiInfo.getMacAddress();
+        return result;
+    }
+    public void checkReLogin(){
+        boolean islogin;
+        PreferenceManager manager=PreferenceManager.getInstance(MainActivity.this);
+        manager.putString("mac",macAddress);
+        islogin=manager.getBoolean("islogin",false);
+        if (islogin){
+            String userid=manager.getString("id","");
+            HashMap<String,String> paramers=new HashMap<>();
+            paramers.put("id",userid);
+            VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETUP,ApiContacts.GETMAC,httpListener,paramers,false);
+        }
     }
 
     /**

@@ -1,9 +1,11 @@
 package com.android.lala.mine.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.lala.R;
 import com.android.lala.base.BaseActivity;
@@ -13,7 +15,9 @@ import com.android.lala.utils.PreferenceManager;
  * Created by Administrator on 2016/9/14.
  */
 public class MoreActivity extends BaseActivity implements View.OnClickListener{
-    private LinearLayout pesoninfo,updatepwd,agreement,currentversion,contactus,goodcomment,signout;
+    private LinearLayout pesoninfo,updatepwd,agreement,currentversion,contactus,signout;
+    private String versionName;
+    private TextView mVersionName;
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_more);
@@ -22,14 +26,19 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener{
         agreement=findView(R.id.agreement);
         currentversion=findView(R.id.currentversion);
         contactus=findView(R.id.contactus);
-        goodcomment=findView(R.id.goodcomment);
         signout=findView(R.id.signout);
+        mVersionName=findView(R.id.visonname);
+        mVersionName.setText(versionName);
         setTitle("更多");
     }
 
     @Override
     protected void initData() {
-
+        try {
+             versionName = MoreActivity.this.getPackageManager().getPackageInfo(MoreActivity.this.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -39,7 +48,6 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener{
         agreement.setOnClickListener(this);
         contactus.setOnClickListener(this);
         currentversion.setOnClickListener(this);
-        goodcomment.setOnClickListener(this);
         signout.setOnClickListener(this);
     }
 
@@ -64,8 +72,6 @@ public class MoreActivity extends BaseActivity implements View.OnClickListener{
             case R.id.contactus :
                 break;
             case R.id.currentversion :
-                break;
-            case R.id.goodcomment :
                 break;
             case R.id.signout :
                 PreferenceManager.getInstance(this).putBoolean("islogin",false);

@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -54,6 +55,7 @@ public class CircleFragment extends BaseFragment {
     private ArrayList<Integer> pageimagelist;
     private List<String> stringList;
     private List<ActionBean> actionBeanList,mydata;
+    private ImageView transition;
     private TextView shareMan;
     @Override
     public void initData(Bundle savedInstanceState) {
@@ -79,17 +81,16 @@ public class CircleFragment extends BaseFragment {
                         String data2=helper2.getContentByKey("circle");
                         List<Map<String,String>> mapList=FastJsonHelper.getKeyMapsList(data2);
                         CircleAdapter circleadapter=new CircleAdapter(getActivity(),mapList);
+                        transition.setVisibility(View.GONE);
                         mCircleRecycleview.setAdapter(circleadapter);
                         break;
                 }
-
-
 
             }
 
             @Override
             public void onFail(String errMsg) {
-                return;
+                showMessageDialog("提示",errMsg);
             }
         };
     }
@@ -97,6 +98,7 @@ public class CircleFragment extends BaseFragment {
     @Override
     public void initView(View view) {
         shareMan= (TextView) view.findViewById(R.id.shareman);
+        transition= (ImageView) view.findViewById(R.id.circle_transition);
         banner= (ConvenientBanner) view.findViewById(R.id.circle_viewpage);
         scrollView= (ScrollView) view.findViewById(R.id.circle_scrollview1);
         //mActionRecycleView= (RecyclerView) view.findViewById(R.id.action_recycleview);
@@ -110,6 +112,7 @@ public class CircleFragment extends BaseFragment {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         //mActionRecycleView.setLayoutManager(manager);
         mCircleRecycleview= (RecyclerView) view.findViewById(R.id.circle_recycleview);
+        mCircleRecycleview.setFocusable(false);
         mCircleRecycleview.setLayoutManager(manager);
         //scrollView.smoothScrollTo(10,10);
         initViewpage();
@@ -169,8 +172,6 @@ public class CircleFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        //scrollView.smoothScrollTo(0,0);
-        scrollView.scrollTo(0,0);
         banner.startTurning(3000);
     }
 

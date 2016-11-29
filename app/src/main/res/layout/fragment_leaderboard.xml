@@ -29,21 +29,25 @@
                     android:layout_weight="1"
                     android:src="@drawable/icon_youxinhuo"/>
                 <ImageView
+                    android:id="@+id/tiyanguan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/icon_tiyanguan"/>
                 <ImageView
+                    android:id="@+id/zhongchou"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/icon_zhongchou"/>
                 <ImageView
+                    android:id="@+id/haodianyouli"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/icon_haodianyouli"/>
                 <ImageView
+                    android:id="@+id/qiandao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -156,6 +160,11 @@
                     -->
             </RelativeLayout>
 
+            <ImageView
+                android:id="@+id/market_transition"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@mipmap/transition_min"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/newrecycle"
                 android:focusable="false"
@@ -192,8 +201,9 @@
 
                 <TextView
                     android:id="@+id/morecommodity"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:gravity="right"
                     android:layout_alignBottom="@+id/market_text_haohuo"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"

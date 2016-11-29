@@ -23,6 +23,7 @@ import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
 import com.android.lala.login.bean.UserBean;
 import com.android.lala.register.RegisterActivity;
+import com.android.lala.register.SetingPwdActivity;
 import com.android.lala.utils.CommUtils;
 import com.android.lala.utils.LalaLog;
 import com.android.lala.utils.PreferenceManager;
@@ -118,6 +119,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void doLogin() {
+        String mac=PreferenceManager.getInstance(this).getString("mac","");
         username = mUserName.getText().toString().trim();
         pwd = mPassWord.getText().toString().trim();
         if (!CommUtils.isMobile(username)) {
@@ -127,6 +129,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         HashMap<String, String> paramers = new HashMap<>();
         paramers.put("name", username);
         paramers.put("pw", pwd);
+        paramers.put("mac",mac);
         VolleyHelper.getInstance().add(commDataDao, this, HttpWhatContacts.LOGIN, ApiContacts.USER_LOGIN, httpListener, paramers, false);
     }
 

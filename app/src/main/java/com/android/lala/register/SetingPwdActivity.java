@@ -44,9 +44,9 @@ public class SetingPwdActivity extends BaseActivity {
             @Override
             public void onSuccess(int what, String response) {
                 if (!TextUtils.isEmpty(response)) {
-                    Intent intent = new Intent();
-                    intent.setClass(SetingPwdActivity.this, LoginActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent();
+//                    intent.setClass(SetingPwdActivity.this, LoginActivity.class);
+//                    startActivity(intent);
                     finish();
                 }
             }

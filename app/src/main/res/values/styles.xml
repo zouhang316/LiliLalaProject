@@ -87,4 +87,8 @@
         <item name="android:textSize">12sp</item>
         <item name="android:layout_weight">1</item>
     </style>
+    <style name="splash_style" parent="@android:style/Theme.NoTitleBar">
+        <item name="android:windowBackground">@mipmap/splash</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

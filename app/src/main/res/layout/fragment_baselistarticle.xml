@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
+        android:id="@+id/information_articlerecycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <com.android.lala.base.adapter.PullRecycler
+        android:id="@+id/pull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.android.lala.base.adapter.PullRecycler>
+
+</RelativeLayout>

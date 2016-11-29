@@ -18,6 +18,8 @@
             android:drawableLeft="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:paddingLeft="5dp"
+            android:hint="输入关键字"
+            android:textSize="13sp"
             android:background="@drawable/searchview_shape"/>
         <TextView
             android:id="@+id/search_article_search"

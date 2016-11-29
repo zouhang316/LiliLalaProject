@@ -3,6 +3,7 @@
     android:id="@+id/circle_scrollview1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -94,9 +95,14 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:textColor="@color/classf"
+            android:visibility="invisible"
             android:text="更多"/>
     </RelativeLayout>
-
+    <ImageView
+        android:id="@+id/circle_transition"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:background="@mipmap/transition"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/circle_recycleview"
         android:focusable="false"
@@ -109,6 +115,7 @@
         android:layout_height="10dp"
         android:background="@color/nomarl_divider"/>
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="30dp">
         <TextView

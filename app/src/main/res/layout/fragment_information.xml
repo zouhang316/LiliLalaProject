@@ -3,6 +3,7 @@
     android:id="@+id/information_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -147,10 +148,10 @@
             android:layout_height="10dp"
             android:background="@color/nomarl_divider"/>
 
-        <ListView
+        <com.android.lala.view.MyListView
             android:id="@+id/information_articlerecommendlist"
             android:layout_width="match_parent"
-            android:layout_height="675dp"
+            android:layout_height="match_parent"
             android:focusable="false"
             android:listSelector="#00000000"/>
     </LinearLayout>

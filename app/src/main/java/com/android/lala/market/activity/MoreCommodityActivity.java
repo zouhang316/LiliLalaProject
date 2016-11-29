@@ -47,6 +47,7 @@ public class MoreCommodityActivity extends BaseActivity {
     @Override
     protected void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_morecommodity);
+        setTitle("更多好货");
         mRecycleview= findView(R.id.morecommodity_view);
         initPullRecycleView();
         initRecycleviewListener();
@@ -74,7 +75,7 @@ public class MoreCommodityActivity extends BaseActivity {
 
     private void initPullRecycleView() {
         mRecycleview.setSwipeEnable(true);
-        DemoLoadMoreView loadMoreView = new DemoLoadMoreView(getApplicationContext(), mRecycleview.getRecyclerView());
+        DemoLoadMoreView loadMoreView = new DemoLoadMoreView(this, mRecycleview.getRecyclerView());
         loadMoreView.setLoadmoreString("加载中");
         loadMoreView.setLoadMorePadding(100);
         mRecycleview.setLoadMoreFooter(loadMoreView);
@@ -90,7 +91,7 @@ public class MoreCommodityActivity extends BaseActivity {
 
     @Override
     protected boolean isShowToolBar() {
-        return false;
+        return true;
     }
     Handler handler=new Handler(){
         @Override
@@ -103,7 +104,6 @@ public class MoreCommodityActivity extends BaseActivity {
                     mRecycleview.onFinishLoading(false,false);
                 }else {
                     loadMore();
-                    adapter.notifyDataSetChanged();
                     mRecycleview.onFinishLoading(true,false);
                 }
             }

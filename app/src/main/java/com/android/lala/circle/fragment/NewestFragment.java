@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
@@ -33,6 +34,7 @@ public class NewestFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private List<CircleBean> circleBeanList;
     private String sort;
+    private ImageView transition;
     @Override
     public void initData(Bundle savedInstanceState) {
         Bundle bundle=getArguments();
@@ -52,12 +54,12 @@ public class NewestFragment extends BaseFragment {
                 LalaLog.i("size",circleBeanList.size()+"");
                 NewAdapter adapter=new NewAdapter(getActivity(),circleBeanList);
                 recyclerView.setAdapter(adapter);
-
+                transition.setVisibility(View.GONE);
             }
 
             @Override
             public void onFail(String errMsg) {
-
+                showMessageDialog("提示",errMsg);
             }
         };
 
@@ -67,6 +69,7 @@ public class NewestFragment extends BaseFragment {
     public void initView(View view) {
         recyclerView= (RecyclerView) view.findViewById(R.id.newest_recycleview);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        transition= (ImageView) view.findViewById(R.id.circle_transition);
         getDataByVolley();
     }
     public void getDataByVolley(){

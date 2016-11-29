@@ -118,6 +118,7 @@ public class InformationFragment extends BaseFragment implements View.OnClickLis
 
             @Override
             public void onFail(String errMsg) {
+                showMessageDialog("提示",errMsg);
             }
         };
 

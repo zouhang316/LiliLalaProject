@@ -9,4 +9,8 @@
     <dimen name="twenty_five_dp">25dp</dimen>
     <dimen name="thirtieth_dp">30dp</dimen>
     <dimen name="titlesize_sp">18sp</dimen>
+    <dimen name="sortud_pd">10dp</dimen>
+    <dimen name="sortxy_pd">20dp</dimen>
+    <dimen name="item_textsize">12sp</dimen>
+
 </resources>
