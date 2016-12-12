@@ -20,4 +20,5 @@
     <color name="nomarl_title_color">#181818</color>
     <color name="article_bg">#FAFAFA</color>
     <color name="black_line">#4F4F4F</color>
+    <color name="black_font">#4A4A4A</color>
 </resources>

@@ -51,6 +51,9 @@ public class CollectActivity extends  BaseActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==collectBeenList.size()){
+                    return;
+                }
                 Intent intent=new Intent(CollectActivity.this, ArticleActivity.class);
                 intent.putExtra("id",collectBeenList.get(position).getId());
                 intent.putExtra("toppic",collectBeenList.get(position).getBackground());

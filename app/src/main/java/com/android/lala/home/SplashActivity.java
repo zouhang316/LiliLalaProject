@@ -10,14 +10,16 @@ import android.view.KeyEvent;
 import com.android.lala.R;
 import com.umeng.analytics.MobclickAgent;
 
+import cn.sharesdk.framework.ShareSDK;
+
 public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
-
+       // MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        ShareSDK.initSDK(this);
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {

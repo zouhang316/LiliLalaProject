@@ -45,6 +45,7 @@
                 android:text="这家在曼谷的星巴克，好像一个顶上的玻璃瓶子,好像一个顶上的玻璃瓶子"/>
 
             <RelativeLayout
+                android:id="@+id/article_channel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -230,5 +231,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@mipmap/transition"
+        android:visibility="gone"
         android:id="@+id/transition"/>
 </FrameLayout>

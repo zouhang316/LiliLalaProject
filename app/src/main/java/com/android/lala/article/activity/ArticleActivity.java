@@ -67,6 +67,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private Button zan;
     private PeriscopeLayout periscopeLayout;
     private RelativeLayout bottomMenu;
+    private RelativeLayout channel;
     private ImageView transition;
     float x1 = 0;
     float x2 = 0;
@@ -90,6 +91,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         date = findView(R.id.article_date);
         likenum = findView(R.id.article_likenum);
         channelinfo = findView(R.id.channelinfo_tv);
+        channel=findView(R.id.article_channel);
         zan=findView(R.id.article_zan);
         back=findView(R.id.article_back);
         comments=findView(R.id.article_comment);
@@ -149,7 +151,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                     Helper helper = JsonResultUtils.helper(response);
                     String article = helper.getContentByKey("article");
                     LalaLog.json("String article", article);
-                    List<ArticleBean> articleBeenList = FastJsonHelper.getObjects(article, ArticleBean.class);
+                    List<ArticleBean> articleBeenList=FastJsonHelper.getObjects(article,ArticleBean.class);
                     articleBean = articleBeenList.get(0);
                     if (null != articleBean) {
                         LalaLog.i("articleBean:", articleBean.toString());
@@ -267,6 +269,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         comments.setOnClickListener(this);
         fav.setOnClickListener(this);
         share.setOnClickListener(this);
+        channel.setOnClickListener(this);
 
     }
 
@@ -293,6 +296,13 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 showShare();
                 //分享点击事件
                 break;
+            case R.id.article_channel:
+                Intent intent1=new Intent(getApplicationContext(),ChannelActivity.class);
+                intent1.putExtra("id",articleBean.getChannelsId());
+                intent1.putExtra("background",articleBean.getChannel_ico());
+                intent1.putExtra("channelName",articleBean.getChannels());
+                startActivity(intent1);
+                break;
         }
 
     }
@@ -305,11 +315,9 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void showShare(){
-        ShareSDK.initSDK(this);
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
-
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
         oks.setTitle(articleBean.getTitle());
         // titleUrl是标题的网络链接，QQ和QQ空间等使用

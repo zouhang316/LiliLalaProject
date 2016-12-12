@@ -106,7 +106,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         VolleyHelper.getInstance().add(commDataDao,getActivity(), HttpWhatContacts.GETUP, ApiContacts.GETCOLLECT,httpListener,paramers,false);
     }
     private void inviteFriends(){
-        ShareSDK.initSDK(getActivity());
+
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();

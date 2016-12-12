@@ -2,6 +2,7 @@ package com.android.lala.market.activity;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -42,16 +43,14 @@ public class WebBuyActivity extends BaseActivity{
         webView=findView(R.id.buyweb);
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setLoadWithOverviewMode(true);
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(link);
-        webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                LalaLog.i("url",url);
-                view.loadUrl(url);
-                return true;
-            }
-        });
     }
 
 //    @Override

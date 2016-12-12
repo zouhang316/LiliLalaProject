@@ -1,5 +1,6 @@
 package com.android.lala.home.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,6 +24,7 @@ import com.android.lala.fastjson.Helper;
 import com.android.lala.fastjson.JsonResultUtils;
 import com.android.lala.http.VolleyHelper;
 import com.android.lala.http.listener.HttpListener;
+import com.android.lala.market.activity.ClassificationActivity;
 import com.android.lala.market.activity.MoreCommodityActivity;
 import com.android.lala.market.adapter.MarketNewAdapter;
 import com.android.lala.market.adapter.MarketOldAdapter;
@@ -61,12 +63,12 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
             @Override
             public void onSuccess(int what, String response) {
                 switch (what){
+                    //下部分数据
                     case HttpWhatContacts.GETOLD :
                         Helper helper= JsonResultUtils.helper(response);
                         String data=helper.getContentByKey("old");
                         oldBeanList= (ArrayList<MarketBean>) FastJsonHelper.getObjects(data,MarketBean.class);
                         if(oldBeanList.size()!=0){
-                            LalaLog.i("size",oldBeanList.size()+"");
                             List<MarketBean> pageList=new ArrayList<>();
                             for (int i = 0; i < 8; i++) {
                                 pageList.add(oldBeanList.get(i));
@@ -75,6 +77,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                             oldRecycleview.setAdapter(oldAdapter);
                         }
                         break;
+                    //上部分数据
                     case HttpWhatContacts.GETNEW:
                         Helper helper2= JsonResultUtils.helper(response);
                         String data2=helper2.getContentByKey("new");
@@ -84,6 +87,12 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                             transition.setVisibility(View.GONE);
                             newRecycleview.setAdapter(newAdapter);
                         }
+                        break;
+                    case HttpWhatContacts.GETUP:
+
+                        break;
+                    case HttpWhatContacts.GETDOWN :
+
                         break;
                 }
             }
@@ -107,6 +116,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         scrollView.smoothScrollTo(0,0);
         morecommodity= (TextView) view.findViewById(R.id.morecommodity);
         oldRecycleview= (RecyclerView) view.findViewById(R.id.oldrecycleview);
+        //屏蔽recycleview焦点
         oldRecycleview.setLayoutManager(new GridLayoutManager(getActivity(),2){
             @Override
             public boolean canScrollVertically() {
@@ -152,6 +162,7 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     }
 
     public void getDataByVolley(){
+        //默认加载数据
         VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.GETOLD, ApiContacts.MARKET_GETOLD,httpListener,new HashMap<String, String>(),false);
         VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETNEW,ApiContacts.MARKET_GETNEW,httpListener,new HashMap<String, String>(),false);
     }
@@ -185,8 +196,42 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.tiyanguan||v.getId()==R.id.zhongchou||v.getId()==R.id.haodianyouli||v.getId()==R.id.qiandao){
+        if (v.getId()==R.id.tiyanguan||v.getId()==R.id.zhongchou||v.getId()==R.id.qiandao){
             showToast("该功能马上上线，敬请期待");
+        }if (v.getId()==R.id.haodianyouli){
+            //分类跳转
+            Intent intent=new Intent(getActivity(), ClassificationActivity.class);
+            startActivityForResult(intent,101);
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101){
+            if (resultCode==Activity.RESULT_OK){
+                String tag=data.getStringExtra("tag");
+                getClassficationDataB(tag);
+            }else if (resultCode==Activity.RESULT_FIRST_USER){
+                String tag=data.getStringExtra("tag");
+                getClassficationDataA(tag);
+            }
+
+        }
+    }
+    private void getClassficationDataA(String tag){
+        if (tag.equals("全部商品")){
+            VolleyHelper.getInstance().add(commDataDao,this, HttpWhatContacts.GETOLD, ApiContacts.MARKET_GETOLD,httpListener,new HashMap<String, String>(),false);
+            return;
+        }
+        HashMap<String,String> paramers=new HashMap<>();
+        paramers.put("screen",tag);
+        VolleyHelper.getInstance().add(commDataDao,getActivity(),HttpWhatContacts.GETUP,ApiContacts.CLASSFICATION_ONE,httpListener,paramers,false);
+    }
+
+    private void getClassficationDataB(String tag){
+        HashMap<String,String> paramers=new HashMap<>();
+        paramers.put("screen",tag);
+        VolleyHelper.getInstance().add(commDataDao,getActivity(),HttpWhatContacts.GETDOWN,ApiContacts.CLASSFICATION_TWO,httpListener,paramers,false);
     }
 }

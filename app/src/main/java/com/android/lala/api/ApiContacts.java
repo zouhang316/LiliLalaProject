@@ -57,5 +57,7 @@ public class ApiContacts {
     public static final String APKICON=LalaConfig.httpServer+"/static/upload/512px.png";
     public static final String GETZC=LalaConfig.httpServer+"/app/reptile_data";
     public static final String GETBANNERIMG=LalaConfig.httpServer+"/app/img_data";
+    public static final String CLASSFICATION_TWO=LalaConfig.httpServer+"/app/market/screen/two";
+    public static final String CLASSFICATION_ONE=LalaConfig.httpServer+"/app/market/screen/one";
 }
 

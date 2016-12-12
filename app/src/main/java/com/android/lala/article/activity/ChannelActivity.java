@@ -82,10 +82,9 @@ public class ChannelActivity extends BaseActivity {
     }
 
     private void getIntentData() {
-        ChannelViewBean bean=getIntent().getParcelableExtra("data");
-        id=bean.getId();
-        toppic=bean.getChannel_background();
-        setTitle(bean.getChannels());
+        id=getIntent().getStringExtra("id");
+        toppic=getIntent().getStringExtra("background");
+        setTitle(getIntent().getStringExtra("channelName"));
     }
 
     @Override
