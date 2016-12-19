@@ -59,5 +59,11 @@ public class ApiContacts {
     public static final String GETBANNERIMG=LalaConfig.httpServer+"/app/img_data";
     public static final String CLASSFICATION_TWO=LalaConfig.httpServer+"/app/market/screen/two";
     public static final String CLASSFICATION_ONE=LalaConfig.httpServer+"/app/market/screen/one";
+    public static final String CIRCLE_GETCOMMENT=LalaConfig.httpServer+"/app/circle/content/comment";
+    public static final String CIRCLE_GETREPLY=LalaConfig.httpServer+"/app/circle/content/comment/reply";
+    public static final String CIRCLE_POSTCOMMENT=LalaConfig.httpServer+"/app/circle/comment/save";
+    public static final String CIRCLE_POSTREPLY=LalaConfig.httpServer+"/app/circle/reply/save";
+    public static final String CIRCLE_GETDAREN=LalaConfig.httpServer+"/app/circle/all";
+    public static final String CIRCLE_GETMORE=LalaConfig.httpServer+"/app/circle/all/ajax";
 }
 

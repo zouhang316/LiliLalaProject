@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.appsdream.nestrefresh.normalstyle.NestRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/content_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false"
+        android:scrollingCache="false">
+
+    </android.support.v7.widget.RecyclerView>
+
+</cn.appsdream.nestrefresh.normalstyle.NestRefreshLayout>

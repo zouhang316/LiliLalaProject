@@ -49,7 +49,7 @@ public class MarketNewAdapter extends BaseRecycleAdapter {
             public void onBindViewHolder(int position) {
                 title.setText(mList.get(position).getCom_name());
                 price.setText(mList.get(position).getPrice());
-                Picasso.with(context).load(mList.get(position).getShowcase_img1()).into(image);
+                Picasso.with(context).load(mList.get(position).getShowcase_img1()).error(R.drawable.erro).into(image);
             }
 
             @Override

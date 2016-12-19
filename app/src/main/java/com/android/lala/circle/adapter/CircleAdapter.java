@@ -50,17 +50,17 @@ public class CircleAdapter extends BaseRecycleAdapter {
                 switch (position){
                     case 0:
                         //background.setBackgroundResource(R.mipmap.shaixinwu);
-                        background.setImageResource(R.mipmap.shaixinwu);
+                        Picasso.with(context).load("http://www.lelelala.net/static/img/images/circle1.jpg").into(background);
                         sort.setText("晒新物");
                         break;
                     case 1:
                        // background.setBackgroundResource(R.mipmap.wantbuy);
-                        background.setImageResource(R.mipmap.wantbuy);
+                        Picasso.with(context).load("http://www.lelelala.net/static/img/images/circle2.jpg").into(background);
                         sort.setText("我想买");
                         break;
                     case 2:
                        // background.setBackgroundResource(R.mipmap.aifaxian);
-                        background.setImageResource(R.mipmap.aifaxian);
+                        Picasso.with(context).load("http://www.lelelala.net/static/img/images/circle3.jpg").into(background);
                         sort.setText("爱发现");
                         break;
                 }

@@ -6,18 +6,16 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.android.lala.R;
 import com.android.lala.api.ApiContacts;
 import com.android.lala.api.HttpWhatContacts;
-import com.android.lala.article.HolderView.LocalImageHolderView;
+import com.android.lala.article.HolderView.NetworkImageHolderView;
+import com.android.lala.article.bean.BannerImageBean;
 import com.android.lala.base.BaseFragment;
-import com.android.lala.base.adapter.DividerItemDecoration;
 import com.android.lala.base.commbuinese.CommDataDaoImpl;
 import com.android.lala.fastjson.FastJsonHelper;
 import com.android.lala.fastjson.Helper;
@@ -29,13 +27,12 @@ import com.android.lala.market.activity.MoreCommodityActivity;
 import com.android.lala.market.adapter.MarketNewAdapter;
 import com.android.lala.market.adapter.MarketOldAdapter;
 import com.android.lala.market.bean.MarketBean;
-import com.android.lala.utils.LalaLog;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import cn.appsdream.nestrefresh.normalstyle.NestRefreshLayout;
 
 /**
  * Created by ZH on 2016/9/22.
@@ -52,12 +49,13 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
     private ConvenientBanner banner;
     private ImageView tiyanguan,zhongchou,haodianyouli,qiandao;
     private TextView morecommodity;
-    private ArrayList<Integer> pageimagelist;
+    private List<MarketBean> pageList;
     private ScrollView scrollView;
     private ImageView transition;
+    private ArrayList<String> imageList;
+    private NestRefreshLayout nestRefreshLayout;
     @Override
     public void initData(Bundle savedInstanceState) {
-        getPageImages();
         commDataDao=new CommDataDaoImpl(getActivity(),false,"");
         httpListener=new HttpListener<String>() {
             @Override
@@ -68,9 +66,9 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                         Helper helper= JsonResultUtils.helper(response);
                         String data=helper.getContentByKey("old");
                         oldBeanList= (ArrayList<MarketBean>) FastJsonHelper.getObjects(data,MarketBean.class);
-                        if(oldBeanList.size()!=0){
-                            List<MarketBean> pageList=new ArrayList<>();
-                            for (int i = 0; i < 8; i++) {
+                        if(oldBeanList.size()>10){
+                           pageList=new ArrayList<>();
+                            for (int i = 0; i < 10; i++) {
                                 pageList.add(oldBeanList.get(i));
                             }
                             oldAdapter=new MarketOldAdapter(pageList,getContext());
@@ -88,10 +86,48 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                             newRecycleview.setAdapter(newAdapter);
                         }
                         break;
+                    case HttpWhatContacts.GETHEAD:
+                        //Banner 图片
+                        Helper banner= JsonResultUtils.helper(response);
+                        String bannerdata=banner.getContentByKey("img_data");
+                        List<BannerImageBean>  beanList= FastJsonHelper.getObjects(bannerdata,BannerImageBean.class);
+                        imageList=new ArrayList<>();
+                        for (int i = 0; i < beanList.size(); i++) {
+                            imageList.add(beanList.get(i).getImg());
+                        }
+                        initViewpage();
+                        break;
                     case HttpWhatContacts.GETUP:
-
+                        //A级分类
+                        Helper helper3= JsonResultUtils.helper(response);
+                        String data3=helper3.getContentByKey("one");
+                        oldBeanList.clear();
+                        oldBeanList= (ArrayList<MarketBean>) FastJsonHelper.getObjects(data3,MarketBean.class);
+                        pageList.clear();
+                        if (oldBeanList.size()>=10){
+                            for (int i = 0; i < 10; i++) {
+                                pageList.add(oldBeanList.get(i));
+                            }
+                        }else {
+                            pageList.addAll(oldBeanList);
+                        }
+                        oldAdapter.notifyDataSetChanged();
                         break;
                     case HttpWhatContacts.GETDOWN :
+                        //B级分类
+                        Helper helper4= JsonResultUtils.helper(response);
+                        String data4=helper4.getContentByKey("one");
+                        oldBeanList.clear();
+                        oldBeanList= (ArrayList<MarketBean>) FastJsonHelper.getObjects(data4,MarketBean.class);
+                        pageList.clear();
+                        if (oldBeanList.size()>=10){
+                            for (int i = 0; i < 10; i++) {
+                                pageList.add(oldBeanList.get(i));
+                            }
+                        }else {
+                            pageList.addAll(oldBeanList);
+                        }
+                        oldAdapter.notifyDataSetChanged();
 
                         break;
                 }
@@ -102,10 +138,13 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
                 showMessageDialog("提示",errMsg);
             }
         };
+        getImageDataByVolley();
     }
 
     @Override
     public void initView(View view) {
+        //nestRefreshLayout= (NestRefreshLayout) view;
+        //nestRefreshLayout.setOnLoadingListener(onPullListener );
         transition= (ImageView) view.findViewById(R.id.market_transition);
         banner= (ConvenientBanner) view.findViewById(R.id.market_viewpage);
         tiyanguan= (ImageView) view.findViewById(R.id.tiyanguan);
@@ -167,20 +206,16 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         VolleyHelper.getInstance().add(commDataDao,this,HttpWhatContacts.GETNEW,ApiContacts.MARKET_GETNEW,httpListener,new HashMap<String, String>(),false);
     }
     public void initViewpage(){
-            banner.setPages(
-                new CBViewHolderCreator< LocalImageHolderView>() {
+        banner.setPages(
+                new CBViewHolderCreator<NetworkImageHolderView>() {
                     @Override
-                    public LocalImageHolderView createHolder() {
-                        return new LocalImageHolderView();
+                    public NetworkImageHolderView createHolder() {
+                        return new NetworkImageHolderView();
                     }
-                },pageimagelist
-            ).setPageIndicator(new int[]{R.drawable.ic_page_indicator,R.drawable.ic_page_indicator_selected});
+                },imageList
+        ).setPageIndicator(new int[]{R.drawable.ic_page_indicator,R.drawable.ic_page_indicator_selected});
     }
-    public void getPageImages(){
-        pageimagelist=new ArrayList<>();
-        pageimagelist.add(R.drawable.view_dot1);
-        pageimagelist.add(R.drawable.view_dot2);
-    }
+
 
     @Override
     public void onResume() {
@@ -234,4 +269,8 @@ public class MarketFragment extends BaseFragment implements View.OnClickListener
         paramers.put("screen",tag);
         VolleyHelper.getInstance().add(commDataDao,getActivity(),HttpWhatContacts.GETDOWN,ApiContacts.CLASSFICATION_TWO,httpListener,paramers,false);
     }
+    private void getImageDataByVolley(){
+        VolleyHelper.getInstance().add(commDataDao,getActivity(), HttpWhatContacts.GETHEAD, ApiContacts.GETBANNERIMG,httpListener,new HashMap<String, String>(),false);
+    }
+
 }

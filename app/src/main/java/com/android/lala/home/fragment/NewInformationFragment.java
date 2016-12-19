@@ -53,7 +53,6 @@ public class NewInformationFragment extends BaseFragment implements View.OnClick
     private String [] titles={"黑科技","出行","智能","众筹","医疗","娱乐","艺术","家居","商业","餐饮","教育"};
     @Override
     public void initData(Bundle savedInstanceState) {
-        getPageImages();
         commDataDao=new CommDataDaoImpl(getActivity(),false,"");
         httpListener=new HttpListener<String>() {
             @Override
@@ -66,12 +65,9 @@ public class NewInformationFragment extends BaseFragment implements View.OnClick
                     imageList.add(beanList.get(i).getImg());
                 }
                 initBanner();
-                LalaLog.i("list",imageList.toString());
             }
-
             @Override
             public void onFail(String errMsg) {
-
             }
         };
         getImageDataByVolley();
@@ -117,12 +113,7 @@ public class NewInformationFragment extends BaseFragment implements View.OnClick
         ).setPageIndicator(new int[]{R.drawable.ic_page_indicator,R.drawable.ic_page_indicator_selected});
     }
 
-    public void getPageImages(){
-        bannerlist=new ArrayList<>();
-        bannerlist.add(R.drawable.view_dot1);
-        bannerlist.add(R.drawable.view_dot2);
 
-    }
     private void getImageDataByVolley(){
         VolleyHelper.getInstance().add(commDataDao,getActivity(), HttpWhatContacts.GETUP, ApiContacts.GETBANNERIMG,httpListener,new HashMap<String, String>(),false);
     }

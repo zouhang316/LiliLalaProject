@@ -18,6 +18,7 @@ public abstract class BaseListViewAdapter<T> extends BaseAdapter {
     protected List<T> mLists;
     protected Context mContext;
     protected LayoutInflater mInflater;
+    protected int type;
 
     public BaseListViewAdapter(Context context) {
         this.mContext = context;
@@ -28,6 +29,13 @@ public abstract class BaseListViewAdapter<T> extends BaseAdapter {
         mInflater = LayoutInflater.from(context);
         this.mLists=mLists;
     }
+    public BaseListViewAdapter(Context context, List<T> mLists,int type) {
+        this.mContext = context;
+        mInflater = LayoutInflater.from(context);
+        this.mLists=mLists;
+        this.type=type;
+    }
+
     public List<T> getmLists() {
         return mLists;
     }

@@ -4,27 +4,20 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by ZH on 2016/9/28.
+ * Created by ZH on 2016/12/16.
  * 497239511@qq.com
  */
-public class CircleArticleBean implements Parcelable {
-
-
+public class DarenBean implements Parcelable {
     /**
-     * datetime : 14天前
-     * background : http://lelelala.net/static/upload/201612016094ccef70eb4687bf0c54e5ad13637c.jpg
+     * background : http://lelelala.net/static/upload/20161215b2b8959bb0344032878f7d5369022129.png
      * author : 夏未初﹌
      * photo : http://lelelala.net/static\ThirdLogin\changed\201611176c10d737cdda4a898b2f37398dba5206.jpg
-     * clicknum : 22
-     * id : 82
-     * sort : 晒新物
-     * title : 带上它们！去过你的精致生活
-     * userId : 193
-     * content : 1481792473415.html
-     * commentnum : 0
+     * clicknum : 3
+     * id : 141
+     * sort : 做出花样
+     * title : 给你一把铁丝，你会拿它来干啥？
      */
 
-    private String datetime;
     private String background;
     private String author;
     private String photo;
@@ -32,17 +25,6 @@ public class CircleArticleBean implements Parcelable {
     private String id;
     private String sort;
     private String title;
-    private String userId;
-    private String content;
-    private String commentnum;
-
-    public String getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
-    }
 
     public String getBackground() {
         return background;
@@ -100,44 +82,16 @@ public class CircleArticleBean implements Parcelable {
         this.title = title;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getCommentnum() {
-        return commentnum;
-    }
-
-    public void setCommentnum(String commentnum) {
-        this.commentnum = commentnum;
-    }
-
     @Override
     public String toString() {
-        return "CircleArticleBean{" +
-                "datetime='" + datetime + '\'' +
-                ", background='" + background + '\'' +
+        return "DarenBean{" +
+                "background='" + background + '\'' +
                 ", author='" + author + '\'' +
                 ", photo='" + photo + '\'' +
                 ", clicknum='" + clicknum + '\'' +
                 ", id='" + id + '\'' +
                 ", sort='" + sort + '\'' +
                 ", title='" + title + '\'' +
-                ", userId='" + userId + '\'' +
-                ", content='" + content + '\'' +
-                ", commentnum='" + commentnum + '\'' +
                 '}';
     }
 
@@ -148,7 +102,6 @@ public class CircleArticleBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.datetime);
         dest.writeString(this.background);
         dest.writeString(this.author);
         dest.writeString(this.photo);
@@ -156,16 +109,12 @@ public class CircleArticleBean implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.sort);
         dest.writeString(this.title);
-        dest.writeString(this.userId);
-        dest.writeString(this.content);
-        dest.writeString(this.commentnum);
     }
 
-    public CircleArticleBean() {
+    public DarenBean() {
     }
 
-    protected CircleArticleBean(Parcel in) {
-        this.datetime = in.readString();
+    protected DarenBean(Parcel in) {
         this.background = in.readString();
         this.author = in.readString();
         this.photo = in.readString();
@@ -173,20 +122,17 @@ public class CircleArticleBean implements Parcelable {
         this.id = in.readString();
         this.sort = in.readString();
         this.title = in.readString();
-        this.userId = in.readString();
-        this.content = in.readString();
-        this.commentnum = in.readString();
     }
 
-    public static final Parcelable.Creator<CircleArticleBean> CREATOR = new Parcelable.Creator<CircleArticleBean>() {
+    public static final Parcelable.Creator<DarenBean> CREATOR = new Parcelable.Creator<DarenBean>() {
         @Override
-        public CircleArticleBean createFromParcel(Parcel source) {
-            return new CircleArticleBean(source);
+        public DarenBean createFromParcel(Parcel source) {
+            return new DarenBean(source);
         }
 
         @Override
-        public CircleArticleBean[] newArray(int size) {
-            return new CircleArticleBean[size];
+        public DarenBean[] newArray(int size) {
+            return new DarenBean[size];
         }
     };
 }

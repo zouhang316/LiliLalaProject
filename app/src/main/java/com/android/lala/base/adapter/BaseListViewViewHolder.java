@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.lala.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -174,7 +175,7 @@ public class BaseListViewViewHolder {
      */
     public BaseListViewViewHolder setImageUrl(int viewId, String url) {
         final ImageView iv = retrieveView(viewId);
-         Picasso.with(mContext).load(url).into(iv);
+         Picasso.with(mContext).load(url).error(R.drawable.erro).into(iv);
         // 图像处理
 //        Picasso.with(mContext).load(url).resize(72, 72)//设置显示大小
 //                .centerCrop().into(iv);

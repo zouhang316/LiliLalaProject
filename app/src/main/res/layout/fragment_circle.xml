@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/circle_scrollview1"
+<cn.appsdream.nestrefresh.normalstyle.NestRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ScrollView
+        android:id="@+id/circle_scrollview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
 
     <com.bigkoo.convenientbanner.ConvenientBanner
         android:id="@+id/circle_viewpage"
@@ -102,6 +108,7 @@
         android:id="@+id/circle_transition"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
+        android:visibility="gone"
         android:background="@mipmap/transition"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/circle_recycleview"
@@ -115,7 +122,6 @@
         android:layout_height="10dp"
         android:background="@color/nomarl_divider"/>
     <RelativeLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="30dp">
         <TextView
@@ -130,6 +136,7 @@
             android:textColor="@color/nomarl_title_color"
             android:textSize="16sp"
             android:text="分享达人"/>
+        <!--
         <TextView
             android:id="@+id/shareman"
             android:layout_width="wrap_content"
@@ -139,7 +146,17 @@
             android:layout_marginRight="10dp"
             android:textColor="@color/classf"
             android:text="更多"/>
+            -->
     </RelativeLayout>
-    </LinearLayout>
+            <com.android.lala.view.MyListView
+                android:id="@+id/darenlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:dividerHeight="10dp"
+                android:divider="@color/nomarl_divider">
 
-</ScrollView>
+            </com.android.lala.view.MyListView>
+    </LinearLayout>
+    </ScrollView>
+</cn.appsdream.nestrefresh.normalstyle.NestRefreshLayout>

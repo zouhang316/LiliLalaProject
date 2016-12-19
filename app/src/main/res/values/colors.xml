@@ -21,4 +21,6 @@
     <color name="article_bg">#FAFAFA</color>
     <color name="black_line">#4F4F4F</color>
     <color name="black_font">#4A4A4A</color>
+    <color name="commentbackground">#17A7A7A7</color>
+    <color name="blue_name">#4682B4</color>
 </resources>

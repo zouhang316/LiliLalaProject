@@ -18,9 +18,11 @@ public class HttpWhatContacts {
     public static final int UPLOADFILE=11;
     public static final int GETNEW=12;
     public static final int GETOLD=13;
-    public static final int GETCONTENT=13;
+    public static final int GETCONTENT=18;
     public static final int GETUP=14;
     public static final int GETDOWN=16;
     public static final int GETHEAD=15;
     public static final int COLLECT=17;
+    public static final int GETMORE=19;
+    public static final int GETREPLY=20;
 }
